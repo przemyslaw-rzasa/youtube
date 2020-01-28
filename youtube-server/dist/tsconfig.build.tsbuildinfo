@@ -2137,16 +2137,24 @@
         "version": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
+      "../src/users/users.controller.ts": {
+        "version": "74acc1ec1681785a8290d87f5ed943996c75f0d7550f1dfc0784343cacfa9c57",
+        "signature": "a75f750f09c5b80a61b6cc879656499bddc4bc32e0dafde2c25e1ef86328daa2"
+      },
+      "../src/users/users.service.ts": {
+        "version": "9fa2834dce9e991963565a887b080afe053a0b8eb0bd14c5dafd8a9c87b44155",
+        "signature": "8cdd155c767887e2ea28b73381ee379ca574d78c46add45566934ade31aac07a"
+      },
       "../src/users/users.module.ts": {
-        "version": "d0e006bdc6588642620041bf6850f0d43d2aefaa26d990dd172a1fcd94d4f9e4",
+        "version": "39fd4456cdb76379766d5a0cfc020f61ee84b981a99ef06cebc6c733d9446808",
         "signature": "aa1725e38b5a0b4009f6a74f296f173e7926c119a60454dbd2e523861735df69"
       },
       "../src/config/typeorm.config.ts": {
-        "version": "9b17a45dc3219e5fad83b82fc80f98b516261d4b92a95b625b7a9d98c7711c68",
+        "version": "21fe3f0afb1d5d1687659d1a4f6b815e05da0cf7c27629ad263be6d22f98d297",
         "signature": "a0ca9bb5a58b5c76393766bd96049e4c0bcb91fd6b2de50892da9b1221d33b73"
       },
       "../src/app.module.ts": {
-        "version": "cbc4aa3da26a4e9000edd066df31a2f9248fdf6cbcd67fc5635074299190af8b",
+        "version": "9b437b783bf029326b49f47443b3219571ae5051061613da656f41c657c5ab87",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
@@ -2292,6 +2300,14 @@
       "../src/main.ts": {
         "version": "e318779281f0100517426802fbb8d0231f732927b008f30fed71e6e851d70f33",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      "../src/users/user.entity.ts": {
+        "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "../src/users/users.repository.ts": {
+        "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       "../node_modules/@types/anymatch/index.d.ts": {
         "version": "48b52264fa193879a074197839dbb4796fa07e86350ff888e5361e06aa46df76",
@@ -6914,8 +6930,24 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "../src/users/users.controller.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/users.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
       "../src/users/users.module.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../src/users/users.controller.ts",
+        "../src/users/users.service.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7253,6 +7285,18 @@
       "../src/main.ts": [
         "../node_modules/@nestjs/core/index.d.ts",
         "../src/app.module.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/user.entity.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/users.repository.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -13083,8 +13127,23 @@
       "../node_modules/@nestjs/typeorm/dist/typeorm.module.d.ts",
       "../node_modules/@nestjs/typeorm/dist/index.d.ts",
       "../node_modules/@nestjs/typeorm/index.d.ts",
+      "../src/users/users.controller.ts",
+      "../src/users/users.service.ts",
       "../src/users/users.module.ts",
-      "../src/app.module.ts",
+      "../src/config/typeorm.config.ts",
+      [
+        "../src/app.module.ts",
+        [
+          {
+            "file": "../src/app.module.ts",
+            "start": 324,
+            "length": 24,
+            "messageText": "Cannot find module './user/user.controller'.",
+            "category": 1,
+            "code": 2307
+          }
+        ]
+      ],
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "../node_modules/@nestjs/core/adapters/index.d.ts",
       "../node_modules/@nestjs/core/injector/module-token-factory.d.ts",
@@ -13121,6 +13180,7 @@
       "../node_modules/@nestjs/core/services/index.d.ts",
       "../node_modules/@nestjs/core/index.d.ts",
       "../src/main.ts",
+      "../src/users/users.repository.ts",
       "../node_modules/@types/anymatch/index.d.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
@@ -13157,7 +13217,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/config/typeorm.config.ts"
+      "../src/users/user.entity.ts"
     ]
   },
   "version": "3.7.5"

@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.typeOrmConfig = {
     type: "postgres",
     host: "youtube-database",
-    username: "postgres",
-    password: "test",
-    database: "postgres",
+    username: "youtube",
+    password: "youtube",
+    database: "youtube",
     entities: [],
     synchronize: true
 };

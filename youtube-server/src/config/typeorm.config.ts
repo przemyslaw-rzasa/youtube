@@ -3,9 +3,9 @@ import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConne
 export const typeOrmConfig: PostgresConnectionOptions = {
   type: "postgres",
   host: "youtube-database",
-  username: "postgres",
-  password: "test",
-  database: "postgres",
+  username: "youtube",
+  password: "youtube",
+  database: "youtube",
   entities: [],
   synchronize: true
 };
