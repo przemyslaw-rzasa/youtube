@@ -9,36 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt = require("bcryptjs");
-const typeorm_1 = require("typeorm");
-let User = class User extends typeorm_1.BaseEntity {
-    constructor() {
-        super(...arguments);
-        this.validatePassword = async (password) => {
-            const hashedPassword = await bcrypt.hash(password, this.salt);
-            return hashedPassword === password;
-        };
-    }
-};
+const class_validator_1 = require("class-validator");
+class CreateUserDto {
+}
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", Number)
-], User.prototype, "id", void 0);
-__decorate([
-    typeorm_1.Column(),
+    class_validator_1.IsEmail(),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], CreateUserDto.prototype, "email", void 0);
 __decorate([
-    typeorm_1.Column(),
+    class_validator_1.MinLength(4),
     __metadata("design:type", String)
-], User.prototype, "salt", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-User = __decorate([
-    typeorm_1.Entity(),
-    typeorm_1.Unique(["email"])
-], User);
-exports.User = User;
-//# sourceMappingURL=user.entity.js.map
+], CreateUserDto.prototype, "password", void 0);
+exports.CreateUserDto = CreateUserDto;
+//# sourceMappingURL=create-user.dto.js.map

@@ -12,13 +12,12 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
 const typeorm_config_1 = require("./config/typeorm.config");
-const user_controller_1 = require("./user/user.controller");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
         imports: [users_module_1.UsersModule, typeorm_1.TypeOrmModule.forRoot(typeorm_config_1.typeOrmConfig)],
-        controllers: [app_controller_1.AppController, user_controller_1.UserController],
+        controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]
     })
 ], AppModule);

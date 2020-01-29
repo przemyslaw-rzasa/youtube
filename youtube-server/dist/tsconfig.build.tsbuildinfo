@@ -422,8 +422,8 @@
         "signature": "8153df63cf65122809db17128e5918f59d6bb43a371b5218f4430c4585f64085"
       },
       "../node_modules/@nestjs/common/interfaces/external/validation-error.interface.d.ts": {
-        "version": "a4cd3d9497e38b52e0f7613cfa00d02011eb5bb118e1e2a0dbb8c50b719f0cc7",
-        "signature": "a4cd3d9497e38b52e0f7613cfa00d02011eb5bb118e1e2a0dbb8c50b719f0cc7"
+        "version": "ef323c17fe66758bb8d843da4f5676e3a460c26763c0448424b436b9a8101011",
+        "signature": "ef323c17fe66758bb8d843da4f5676e3a460c26763c0448424b436b9a8101011"
       },
       "../node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts": {
         "version": "5adfaf2f9f33957264ad199a186456a4676b2724ed700fc313ff945d03372169",
@@ -490,8 +490,8 @@
         "signature": "dbd539762e28e585c1c954624a7ed059c32b8e72750024c91d3197dd5324991c"
       },
       "../node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts": {
-        "version": "f111c30b1ad39f1fd78d9cac4d143047a36af10015edfde875290ecf64f24876",
-        "signature": "f111c30b1ad39f1fd78d9cac4d143047a36af10015edfde875290ecf64f24876"
+        "version": "edb91a4b278c852dd60ffb448e22f633403f27df52a1e759cb6376ca7241eb78",
+        "signature": "edb91a4b278c852dd60ffb448e22f633403f27df52a1e759cb6376ca7241eb78"
       },
       "../node_modules/@nestjs/common/interfaces/injectable.interface.d.ts": {
         "version": "e19e2b6acc99a90030f4526e497576a99b32235d161ae68b0ac5bb2e0ca26808",
@@ -662,8 +662,8 @@
         "signature": "66ce86394b4ced375bd59338265a190a5cbe0b78a15bdf64e34b46d3a5ffaa5d"
       },
       "../node_modules/@types/node/readline.d.ts": {
-        "version": "c66694170e325840524c1512b07bd9c2492611f361d635546eb673c2526a5c68",
-        "signature": "c66694170e325840524c1512b07bd9c2492611f361d635546eb673c2526a5c68"
+        "version": "7531eebda3832481211ea0cd891f622a3d9692195761f72baafc2798c5dc06a6",
+        "signature": "7531eebda3832481211ea0cd891f622a3d9692195761f72baafc2798c5dc06a6"
       },
       "../node_modules/@types/node/repl.d.ts": {
         "version": "9a09086b0c33e65f14a17eb0e9d415cab597e0b687a1a45d4b59663706451dbe",
@@ -746,8 +746,8 @@
         "signature": "5a080d2463f22e718b800cf3ab89bec9d3dd9ae98b8caf7a133586bed506c4b6"
       },
       "../node_modules/@nestjs/common/interfaces/external/mqtt-options.interface.d.ts": {
-        "version": "5c88ac2b349d35f7288b9ae8f797cb3e54aa90dc75418bbdf53f5d52a0bf2297",
-        "signature": "5c88ac2b349d35f7288b9ae8f797cb3e54aa90dc75418bbdf53f5d52a0bf2297"
+        "version": "a1d4d489ed90bbcda3a27b509fcbeaa0d96b2b117fc9ff7e65d5c931a7567ddb",
+        "signature": "a1d4d489ed90bbcda3a27b509fcbeaa0d96b2b117fc9ff7e65d5c931a7567ddb"
       },
       "../node_modules/@nestjs/common/interfaces/microservices/custom-transport-strategy.interface.d.ts": {
         "version": "c0c4730cd2930521c6dd7707b9f12c238739026573300e0dacfd79aa3d02d1e5",
@@ -830,16 +830,16 @@
         "signature": "c8de9e8a5dab770270b115a0fe2076dd53a3c32a81780409066cf20818240c34"
       },
       "../node_modules/@nestjs/common/decorators/core/inject.decorator.d.ts": {
-        "version": "9ffd150427b81707804bfb4e6d093cbec885d15fe9c0edad7938035caca2e93a",
-        "signature": "9ffd150427b81707804bfb4e6d093cbec885d15fe9c0edad7938035caca2e93a"
+        "version": "f55fc3e536ab193aaabb9b6ded5f93181f81294ee65fe3199c9f4415f0f1e53c",
+        "signature": "f55fc3e536ab193aaabb9b6ded5f93181f81294ee65fe3199c9f4415f0f1e53c"
       },
       "../node_modules/@nestjs/common/decorators/core/injectable.decorator.d.ts": {
-        "version": "a8b5826ea93fe4a6a6605c910c7c67455e25853060b46e2ba98d0458df0f476b",
-        "signature": "a8b5826ea93fe4a6a6605c910c7c67455e25853060b46e2ba98d0458df0f476b"
+        "version": "8043ba7d556843bc12e3d9d1e36041ea875b56b03e4571ac055426547974f7a3",
+        "signature": "8043ba7d556843bc12e3d9d1e36041ea875b56b03e4571ac055426547974f7a3"
       },
       "../node_modules/@nestjs/common/decorators/core/optional.decorator.d.ts": {
-        "version": "28fb07256417f2ad495e806bee91e20e5587841cd18834d5eb616ab03364a790",
-        "signature": "28fb07256417f2ad495e806bee91e20e5587841cd18834d5eb616ab03364a790"
+        "version": "542ecc66e4fcc33f46695ae22b1d14c075054a78c019915d556636be642465af",
+        "signature": "542ecc66e4fcc33f46695ae22b1d14c075054a78c019915d556636be642465af"
       },
       "../node_modules/@nestjs/common/decorators/core/set-metadata.decorator.d.ts": {
         "version": "7a6f4dbb3d5c9f4669411d86935723c38f187e19950c96800a36b742a814df1a",
@@ -858,8 +858,8 @@
         "signature": "9fb3fe423ca51ae490335e478f672be983ce33567e4f8b581763dabd809877fb"
       },
       "../node_modules/@nestjs/common/decorators/core/apply-decorators.d.ts": {
-        "version": "a222ec12297684e70e8d1225df0a02a9111f5fbcdbd9eb857426f6c514049681",
-        "signature": "a222ec12297684e70e8d1225df0a02a9111f5fbcdbd9eb857426f6c514049681"
+        "version": "52ff5e1ea35c54428b46c75fd14f87b7a7158a8f4a1ecfc4a9b996a03185c738",
+        "signature": "52ff5e1ea35c54428b46c75fd14f87b7a7158a8f4a1ecfc4a9b996a03185c738"
       },
       "../node_modules/@nestjs/common/decorators/core/index.d.ts": {
         "version": "2b658513ca9181d8dbfc756dfbe24cb5f6a70b7c49f87854a8452e9a8b362b74",
@@ -1030,8 +1030,8 @@
         "signature": "e7df7eb51c5090db4bdcdbf9efe053530dff0e33796f40b08b1a3be6c3a351d0"
       },
       "../node_modules/@nestjs/common/http/interfaces/http-module.interface.d.ts": {
-        "version": "a67ce79756f1a84fa63df0fa764b1fe54ac1442d150539f12e3e11c3016135fa",
-        "signature": "a67ce79756f1a84fa63df0fa764b1fe54ac1442d150539f12e3e11c3016135fa"
+        "version": "fb986dd9763020d8b0bb92257a2be89f18d286947762d93788b8518c4a3db2ef",
+        "signature": "fb986dd9763020d8b0bb92257a2be89f18d286947762d93788b8518c4a3db2ef"
       },
       "../node_modules/@nestjs/common/http/interfaces/index.d.ts": {
         "version": "7d80d85fbd6b4e0fe11dde5fcc9aa875547f1ec1a499ca536a39b55d4e1ba803",
@@ -1102,8 +1102,8 @@
         "signature": "71807b208e5f15feffb3ff530bec5b46b1217af0d8cc96dde00d549353bcb864"
       },
       "../node_modules/@nestjs/common/index.d.ts": {
-        "version": "e0e01013f40a172c13d53c88ce2695741df27852da7ede9e2e336c86c43c8ec5",
-        "signature": "e0e01013f40a172c13d53c88ce2695741df27852da7ede9e2e336c86c43c8ec5"
+        "version": "abec56db8d9e8c0be53354ab0f3e6bc5a888ea005f32e43f9893ae1e49360db7",
+        "signature": "abec56db8d9e8c0be53354ab0f3e6bc5a888ea005f32e43f9893ae1e49360db7"
       },
       "../src/app.service.ts": {
         "version": "088b19f655de2ecec06ec7a413df1b05979502a97e55960f536ae8f876ec28a2",
@@ -2137,24 +2137,116 @@
         "version": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
-      "../src/users/users.controller.ts": {
-        "version": "74acc1ec1681785a8290d87f5ed943996c75f0d7550f1dfc0784343cacfa9c57",
-        "signature": "a75f750f09c5b80a61b6cc879656499bddc4bc32e0dafde2c25e1ef86328daa2"
+      "../node_modules/class-validator/validation/ValidationError.d.ts": {
+        "version": "8b5ad058f8dab857050fdbb092b9f1267d22641f0f746cd8a7abee85b48bb83a",
+        "signature": "8b5ad058f8dab857050fdbb092b9f1267d22641f0f746cd8a7abee85b48bb83a"
+      },
+      "../node_modules/class-validator/validation/ValidatorOptions.d.ts": {
+        "version": "d3c0c471c298dc7115ada6c07f78d4fafb088523a301cb539c5cb44dae009954",
+        "signature": "d3c0c471c298dc7115ada6c07f78d4fafb088523a301cb539c5cb44dae009954"
+      },
+      "../node_modules/class-validator/validation-schema/ValidationSchema.d.ts": {
+        "version": "86f89124a90fae1b90421bcce1e0ba58614383ca72403bfc03ff89761b050a4d",
+        "signature": "86f89124a90fae1b90421bcce1e0ba58614383ca72403bfc03ff89761b050a4d"
+      },
+      "../node_modules/class-validator/container.d.ts": {
+        "version": "5a6fbec8c8e62c37e9685a91a6ef0f6ecaddb1ee90f7b2c2b71b454b40a0d9a6",
+        "signature": "5a6fbec8c8e62c37e9685a91a6ef0f6ecaddb1ee90f7b2c2b71b454b40a0d9a6"
+      },
+      "../node_modules/@types/validator/index.d.ts": {
+        "version": "930f4dcf2bf161cde0f737e6fb1ee8ad1c54f3b7bdf64d18adc4c2521f48aaa8",
+        "signature": "930f4dcf2bf161cde0f737e6fb1ee8ad1c54f3b7bdf64d18adc4c2521f48aaa8"
+      },
+      "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts": {
+        "version": "367b353f3a003d31a72ad3b1cef5c933b71889ae86cb645520d1681014e79ab9",
+        "signature": "367b353f3a003d31a72ad3b1cef5c933b71889ae86cb645520d1681014e79ab9"
+      },
+      "../node_modules/class-validator/validation/ValidationArguments.d.ts": {
+        "version": "f049af45e62625e0be51a3badd311110abf1ac8b23f56689e1d850923f6d9aac",
+        "signature": "f049af45e62625e0be51a3badd311110abf1ac8b23f56689e1d850923f6d9aac"
+      },
+      "../node_modules/class-validator/decorator/ValidationOptions.d.ts": {
+        "version": "e700a3327eb9f018b9af7a56d9214383919103950141d2e44a4a1cd59bbe67c6",
+        "signature": "e700a3327eb9f018b9af7a56d9214383919103950141d2e44a4a1cd59bbe67c6"
+      },
+      "../node_modules/class-validator/decorator/decorators.d.ts": {
+        "version": "34d83ecda22cb58a70c3c51bb356d94222ed15ba82880dfb7309e74d281804ef",
+        "signature": "34d83ecda22cb58a70c3c51bb356d94222ed15ba82880dfb7309e74d281804ef"
+      },
+      "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts": {
+        "version": "8e7c8386c3700086085770ac298d37de34bd290db95938f5c77f1ab83fa67c52",
+        "signature": "8e7c8386c3700086085770ac298d37de34bd290db95938f5c77f1ab83fa67c52"
+      },
+      "../node_modules/class-validator/validation/ValidationTypes.d.ts": {
+        "version": "b9448353389cfb3d7fed5fc0d23ca87b0ac16149b89ba8c9c8ae568d01b8c3ad",
+        "signature": "b9448353389cfb3d7fed5fc0d23ca87b0ac16149b89ba8c9c8ae568d01b8c3ad"
+      },
+      "../node_modules/class-validator/metadata/ValidationMetadataArgs.d.ts": {
+        "version": "8f29f65ce09040175a948aeb38af31f34367123903c49b556a76097bcb8fe813",
+        "signature": "8f29f65ce09040175a948aeb38af31f34367123903c49b556a76097bcb8fe813"
+      },
+      "../node_modules/class-validator/metadata/ValidationMetadata.d.ts": {
+        "version": "8be85fd3849c702cd34aee594b4e9773dceca300cc358c63d75a3118720b12fe",
+        "signature": "8be85fd3849c702cd34aee594b4e9773dceca300cc358c63d75a3118720b12fe"
+      },
+      "../node_modules/class-validator/validation/Validator.d.ts": {
+        "version": "3d0b16232d130758c990594006dd24361a7cf3a5efc86b1ec6d6af61c0b2ea67",
+        "signature": "3d0b16232d130758c990594006dd24361a7cf3a5efc86b1ec6d6af61c0b2ea67"
+      },
+      "../node_modules/class-validator/register-decorator.d.ts": {
+        "version": "ea96782b5b69f29f37be42c51f944a0a4a478cbe3fed1d2ec25cffd5bd3617a4",
+        "signature": "ea96782b5b69f29f37be42c51f944a0a4a478cbe3fed1d2ec25cffd5bd3617a4"
+      },
+      "../node_modules/class-validator/metadata/ConstraintMetadata.d.ts": {
+        "version": "bb71811f328b358d990e298006492de623964862240de7eb6342e5efb8aafae9",
+        "signature": "bb71811f328b358d990e298006492de623964862240de7eb6342e5efb8aafae9"
+      },
+      "../node_modules/class-validator/metadata/MetadataStorage.d.ts": {
+        "version": "c569d4d6f3aa771dc1600a73bd8f1b714e10a75218379d93f9cf6bc13bbc0ab0",
+        "signature": "c569d4d6f3aa771dc1600a73bd8f1b714e10a75218379d93f9cf6bc13bbc0ab0"
+      },
+      "../node_modules/class-validator/index.d.ts": {
+        "version": "70aecfd981af29d74ba7ab6667b9cc2a53459d8eb099c139fd2aa54c3059c71d",
+        "signature": "70aecfd981af29d74ba7ab6667b9cc2a53459d8eb099c139fd2aa54c3059c71d"
+      },
+      "../src/users/dto/create-user.dto.ts": {
+        "version": "88c5d2486cb9333ec00e30244729c46761c255a8e2c8562f0b3ea121bbcf07c8",
+        "signature": "b2ce9b18262674e4aec9791a6773fd50bd5901a48e95898d4c36ab8277cd2e3e"
+      },
+      "../node_modules/@types/bcryptjs/index.d.ts": {
+        "version": "9dfe431ab1485e17a6055e186c49da9d23af74b965f2e99f8acc6c958778608f",
+        "signature": "9dfe431ab1485e17a6055e186c49da9d23af74b965f2e99f8acc6c958778608f"
+      },
+      "../src/users/user.entity.ts": {
+        "version": "c52ab611154bab34d34f6043b59cd8975ec5a7d3dff215d20bce36a5232819b2",
+        "signature": "b8d9ad7ac14735d751654c2100525ff00230a997ded5f7d09b6e9629b9eaf4a7"
+      },
+      "../src/users/dto/auth-user.dto.ts": {
+        "version": "0b0d5b4972773b2dd3ca7fe0e2efc0307ac652ee74aca133168d99c897b27f70",
+        "signature": "81e4ec0206e5246f40345fd6fea4bccfe1102292dfafc0388917efe704a168eb"
+      },
+      "../src/users/users.repository.ts": {
+        "version": "4117798d76682ba892db4af2746316bef0e4aca127da2c7b75924ed0ee03ff3a",
+        "signature": "b7e659ebb342b22e2f56c5a18fa8a683340c0d02615b86d6e410f7bcf8a37590"
       },
       "../src/users/users.service.ts": {
-        "version": "9fa2834dce9e991963565a887b080afe053a0b8eb0bd14c5dafd8a9c87b44155",
-        "signature": "8cdd155c767887e2ea28b73381ee379ca574d78c46add45566934ade31aac07a"
+        "version": "68c9c173bc0bac7741e4149a8c05f971f7aab990336f19549f216e9df837c367",
+        "signature": "2cadef612348bb8ce8b92ce1fa5874a6fcb665d8dda02c0be671f09298f83483"
+      },
+      "../src/users/users.controller.ts": {
+        "version": "6e0f0784f9b375002a44196829cf41ffd53b52aea9fe823986a39ebabbc6edcc",
+        "signature": "123184ab50243d61ba0db82ef2c11a83f2b8a804e206e59b4592e39dbfba04c7"
       },
       "../src/users/users.module.ts": {
-        "version": "39fd4456cdb76379766d5a0cfc020f61ee84b981a99ef06cebc6c733d9446808",
+        "version": "8e424d1abbe0d0098ca8c3ccecc41bdb802b5b886b7e410f8d5ebc5e52ab9dc1",
         "signature": "aa1725e38b5a0b4009f6a74f296f173e7926c119a60454dbd2e523861735df69"
       },
       "../src/config/typeorm.config.ts": {
-        "version": "21fe3f0afb1d5d1687659d1a4f6b815e05da0cf7c27629ad263be6d22f98d297",
+        "version": "10ca8f3ef43bc7b1daa8147f3edc337e453191933da1e51ba4c17f365c17108c",
         "signature": "a0ca9bb5a58b5c76393766bd96049e4c0bcb91fd6b2de50892da9b1221d33b73"
       },
       "../src/app.module.ts": {
-        "version": "9b437b783bf029326b49f47443b3219571ae5051061613da656f41c657c5ab87",
+        "version": "cbc4aa3da26a4e9000edd066df31a2f9248fdf6cbcd67fc5635074299190af8b",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
@@ -2206,8 +2298,8 @@
         "signature": "99579aa074ed298e7a3d6a47e68f0cd099e92411212d5081ce88344a5b1b528d"
       },
       "../node_modules/@nestjs/core/helpers/context-id-factory.d.ts": {
-        "version": "8d1f947ba0a7c5203fff0ef7c56f7062a753672dc2fa0f5b0f752fa01fb96ffb",
-        "signature": "8d1f947ba0a7c5203fff0ef7c56f7062a753672dc2fa0f5b0f752fa01fb96ffb"
+        "version": "a4d05f346ba48f5685f9142fdd90b1e12e463535c38bdea74fce64813f2a8661",
+        "signature": "a4d05f346ba48f5685f9142fdd90b1e12e463535c38bdea74fce64813f2a8661"
       },
       "../node_modules/@nestjs/core/helpers/http-adapter-host.d.ts": {
         "version": "26a2479f6411e2caa6317f54ea17f7df0f6e5f4be53a87ba830787888dad7243",
@@ -2241,6 +2333,10 @@
         "version": "e99e3ad9035927f61b1d6b54c51fca01e46bdcaf861fd9484086d871e76d0aef",
         "signature": "e99e3ad9035927f61b1d6b54c51fca01e46bdcaf861fd9484086d871e76d0aef"
       },
+      "../node_modules/@nestjs/core/metadata-scanner.d.ts": {
+        "version": "9c08c74e1560befc7fc784be9cd20ec036f7387ad0d55dbb0d5164b3a67f6ab0",
+        "signature": "9c08c74e1560befc7fc784be9cd20ec036f7387ad0d55dbb0d5164b3a67f6ab0"
+      },
       "../node_modules/@nestjs/core/middleware/routes-mapper.d.ts": {
         "version": "5175a0f207a73df7426acc2bdc854b0c4bfab7434742f873816f0fc71f4fa2f5",
         "signature": "5175a0f207a73df7426acc2bdc854b0c4bfab7434742f873816f0fc71f4fa2f5"
@@ -2254,20 +2350,20 @@
         "signature": "82d3e00d56a71fc169f3cf9ec5f5ffcc92f6c0e67d4dfc130dafe9f1886d5515"
       },
       "../node_modules/@nestjs/core/injector/injector.d.ts": {
-        "version": "da4dc735fcc4b9ed084fb4fd2089cd3302d339bfee5ce91c5818b328ffabf3c4",
-        "signature": "da4dc735fcc4b9ed084fb4fd2089cd3302d339bfee5ce91c5818b328ffabf3c4"
+        "version": "396c4702dd84b150a1b5f8ab066eacf27e2f44e3a4fab17df09a7db555b0b7a4",
+        "signature": "396c4702dd84b150a1b5f8ab066eacf27e2f44e3a4fab17df09a7db555b0b7a4"
       },
       "../node_modules/@nestjs/core/nest-application-context.d.ts": {
         "version": "bad66d77f0e67746170056ece56a479d74cf98f9dc8dc008562af4b2b41beb9e",
         "signature": "bad66d77f0e67746170056ece56a479d74cf98f9dc8dc008562af4b2b41beb9e"
       },
       "../node_modules/@nestjs/core/nest-application.d.ts": {
-        "version": "2f39dfceba36839d7c2911e0a9480890bc85e6cbc3e7699ca73a7d1d6907d10c",
-        "signature": "2f39dfceba36839d7c2911e0a9480890bc85e6cbc3e7699ca73a7d1d6907d10c"
+        "version": "5288688d801a30401b794c3af649a310f0c29c6a21445b93e1bfd029849bf49f",
+        "signature": "5288688d801a30401b794c3af649a310f0c29c6a21445b93e1bfd029849bf49f"
       },
       "../node_modules/@nestjs/common/interfaces/microservices/nest-microservice-options.interface.d.ts": {
-        "version": "e93eef79b6bdaaf6337f64632e421b89e8526b4104a18cc3f02dffd2e391aef4",
-        "signature": "e93eef79b6bdaaf6337f64632e421b89e8526b4104a18cc3f02dffd2e391aef4"
+        "version": "e3d221660c0b79a9a3ba1111b3dfbb1136c0b52d7609b0054d3ce09ce711a3e6",
+        "signature": "e3d221660c0b79a9a3ba1111b3dfbb1136c0b52d7609b0054d3ce09ce711a3e6"
       },
       "../node_modules/@nestjs/core/nest-factory.d.ts": {
         "version": "23793cb60372f28d6d20fbb2effb8a9673ccd1fcdf7d253f4c2787de197977d3",
@@ -2294,20 +2390,12 @@
         "signature": "2e252235037a2cd8feebfbf74aa460f783e5d423895d13f29a934d7655a1f8be"
       },
       "../node_modules/@nestjs/core/index.d.ts": {
-        "version": "6400917b161d3331bc82638ccc4aa149d755f501cfaba3d716fca1228c956171",
-        "signature": "6400917b161d3331bc82638ccc4aa149d755f501cfaba3d716fca1228c956171"
+        "version": "7b5ed961a0e03965299591d73de8b8c41e8a68105ff4fc07a240b0dfb94a5a3d",
+        "signature": "7b5ed961a0e03965299591d73de8b8c41e8a68105ff4fc07a240b0dfb94a5a3d"
       },
       "../src/main.ts": {
         "version": "e318779281f0100517426802fbb8d0231f732927b008f30fed71e6e851d70f33",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
-      },
-      "../src/users/user.entity.ts": {
-        "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      "../src/users/users.repository.ts": {
-        "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       "../node_modules/@types/anymatch/index.d.ts": {
         "version": "48b52264fa193879a074197839dbb4796fa07e86350ff888e5361e06aa46df76",
@@ -6930,7 +7018,180 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "../src/users/users.controller.ts": [
+      "../node_modules/class-validator/validation/ValidationError.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidatorOptions.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation-schema/ValidationSchema.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/container.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/@types/validator/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidationArguments.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/decorator/ValidationOptions.d.ts": [
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/decorator/decorators.d.ts": [
+        "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts",
+        "../node_modules/class-validator/decorator/ValidationOptions.d.ts",
+        "../node_modules/@types/validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts": [
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidationTypes.d.ts": [
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/metadata/ValidationMetadataArgs.d.ts": [
+        "../node_modules/class-validator/decorator/ValidationOptions.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/metadata/ValidationMetadata.d.ts": [
+        "../node_modules/class-validator/metadata/ValidationMetadataArgs.d.ts",
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/Validator.d.ts": [
+        "../node_modules/class-validator/metadata/ValidationMetadata.d.ts",
+        "../node_modules/class-validator/validation/ValidationError.d.ts",
+        "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts",
+        "../node_modules/class-validator/validation/ValidatorOptions.d.ts",
+        "../node_modules/@types/validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/register-decorator.d.ts": [
+        "../node_modules/class-validator/validation/ValidatorOptions.d.ts",
+        "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/metadata/ConstraintMetadata.d.ts": [
+        "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/metadata/MetadataStorage.d.ts": [
+        "../node_modules/class-validator/metadata/ValidationMetadata.d.ts",
+        "../node_modules/class-validator/metadata/ConstraintMetadata.d.ts",
+        "../node_modules/class-validator/validation-schema/ValidationSchema.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/index.d.ts": [
+        "../node_modules/class-validator/validation/ValidationError.d.ts",
+        "../node_modules/class-validator/validation/ValidatorOptions.d.ts",
+        "../node_modules/class-validator/validation-schema/ValidationSchema.d.ts",
+        "../node_modules/class-validator/container.d.ts",
+        "../node_modules/class-validator/decorator/decorators.d.ts",
+        "../node_modules/class-validator/decorator/ValidationOptions.d.ts",
+        "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts",
+        "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts",
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/class-validator/validation/ValidationTypes.d.ts",
+        "../node_modules/class-validator/validation/Validator.d.ts",
+        "../node_modules/class-validator/register-decorator.d.ts",
+        "../node_modules/class-validator/metadata/MetadataStorage.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/dto/create-user.dto.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/@types/bcryptjs/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/user.entity.ts": [
+        "../node_modules/@types/bcryptjs/index.d.ts",
+        "../node_modules/typeorm/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/dto/auth-user.dto.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/users.repository.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../node_modules/@types/bcryptjs/index.d.ts",
+        "../src/users/user.entity.ts",
+        "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/auth-user.dto.ts",
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
@@ -6939,6 +7200,20 @@
       ],
       "../src/users/users.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../src/users/dto/create-user.dto.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/users/users.repository.ts",
+        "../src/users/dto/auth-user.dto.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/users.controller.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../src/users/dto/create-user.dto.ts",
+        "../src/users/users.service.ts",
+        "../src/users/dto/auth-user.dto.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -6948,6 +7223,8 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/users/users.controller.ts",
         "../src/users/users.service.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/users/users.repository.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -6955,6 +7232,7 @@
       ],
       "../src/config/typeorm.config.ts": [
         "../node_modules/typeorm/driver/postgres/PostgresConnectionOptions.d.ts",
+        "../src/users/user.entity.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7146,6 +7424,13 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "../node_modules/@nestjs/core/metadata-scanner.d.ts": [
+        "../node_modules/@nestjs/common/interfaces/injectable.interface.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
       "../node_modules/@nestjs/core/middleware/routes-mapper.d.ts": [
         "../node_modules/@nestjs/common/interfaces/index.d.ts",
         "../node_modules/@nestjs/core/injector/container.d.ts",
@@ -7271,6 +7556,7 @@
         "../node_modules/@nestjs/core/exceptions/index.d.ts",
         "../node_modules/@nestjs/core/helpers/index.d.ts",
         "../node_modules/@nestjs/core/injector/index.d.ts",
+        "../node_modules/@nestjs/core/metadata-scanner.d.ts",
         "../node_modules/@nestjs/core/middleware/index.d.ts",
         "../node_modules/@nestjs/core/nest-application.d.ts",
         "../node_modules/@nestjs/core/nest-application-context.d.ts",
@@ -7285,18 +7571,6 @@
       "../src/main.ts": [
         "../node_modules/@nestjs/core/index.d.ts",
         "../src/app.module.ts",
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.5/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "../src/users/user.entity.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.5/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "../src/users/users.repository.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -12016,6 +12290,174 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "../node_modules/class-validator/validation/ValidationError.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidatorOptions.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation-schema/ValidationSchema.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/container.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/@types/validator/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidationArguments.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/decorator/ValidationOptions.d.ts": [
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/decorator/decorators.d.ts": [
+        "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts",
+        "../node_modules/class-validator/decorator/ValidationOptions.d.ts",
+        "../node_modules/@types/validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts": [
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/ValidationTypes.d.ts": [
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/metadata/ValidationMetadataArgs.d.ts": [
+        "../node_modules/class-validator/decorator/ValidationOptions.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/metadata/ValidationMetadata.d.ts": [
+        "../node_modules/class-validator/metadata/ValidationMetadataArgs.d.ts",
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/validation/Validator.d.ts": [
+        "../node_modules/class-validator/metadata/ValidationMetadata.d.ts",
+        "../node_modules/class-validator/validation/ValidationError.d.ts",
+        "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts",
+        "../node_modules/class-validator/validation/ValidatorOptions.d.ts",
+        "../node_modules/@types/validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/register-decorator.d.ts": [
+        "../node_modules/class-validator/validation/ValidatorOptions.d.ts",
+        "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/metadata/ConstraintMetadata.d.ts": [
+        "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/metadata/MetadataStorage.d.ts": [
+        "../node_modules/class-validator/metadata/ValidationMetadata.d.ts",
+        "../node_modules/class-validator/metadata/ConstraintMetadata.d.ts",
+        "../node_modules/class-validator/validation-schema/ValidationSchema.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/class-validator/index.d.ts": [
+        "../node_modules/class-validator/validation/ValidationError.d.ts",
+        "../node_modules/class-validator/validation/ValidatorOptions.d.ts",
+        "../node_modules/class-validator/validation-schema/ValidationSchema.d.ts",
+        "../node_modules/class-validator/container.d.ts",
+        "../node_modules/class-validator/decorator/decorators.d.ts",
+        "../node_modules/class-validator/decorator/ValidationOptions.d.ts",
+        "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts",
+        "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts",
+        "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+        "../node_modules/class-validator/validation/ValidationTypes.d.ts",
+        "../node_modules/class-validator/validation/Validator.d.ts",
+        "../node_modules/class-validator/register-decorator.d.ts",
+        "../node_modules/class-validator/metadata/MetadataStorage.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/@types/bcryptjs/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/users/user.entity.ts": [
+        "../node_modules/typeorm/index.d.ts"
+      ],
+      "../src/users/users.repository.ts": [
+        "../src/users/dto/auth-user.dto.ts",
+        "../src/users/user.entity.ts",
+        "../src/users/dto/create-user.dto.ts",
+        "../node_modules/typeorm/index.d.ts"
+      ],
+      "../src/users/users.service.ts": [
+        "../src/users/user.entity.ts",
+        "../src/users/users.repository.ts",
+        "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/auth-user.dto.ts"
+      ],
+      "../src/users/users.controller.ts": [
+        "../src/users/user.entity.ts",
+        "../src/users/users.service.ts",
+        "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/auth-user.dto.ts"
+      ],
       "../src/config/typeorm.config.ts": [
         "../node_modules/typeorm/driver/postgres/PostgresConnectionOptions.d.ts"
       ],
@@ -12193,6 +12635,13 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "../node_modules/@nestjs/core/metadata-scanner.d.ts": [
+        "../node_modules/@nestjs/common/interfaces/injectable.interface.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
       "../node_modules/@nestjs/core/middleware/routes-mapper.d.ts": [
         "../node_modules/@nestjs/common/interfaces/index.d.ts",
         "../node_modules/@nestjs/core/injector/container.d.ts",
@@ -12318,6 +12767,7 @@
         "../node_modules/@nestjs/core/exceptions/index.d.ts",
         "../node_modules/@nestjs/core/helpers/index.d.ts",
         "../node_modules/@nestjs/core/injector/index.d.ts",
+        "../node_modules/@nestjs/core/metadata-scanner.d.ts",
         "../node_modules/@nestjs/core/middleware/index.d.ts",
         "../node_modules/@nestjs/core/nest-application.d.ts",
         "../node_modules/@nestjs/core/nest-application-context.d.ts",
@@ -13127,23 +13577,33 @@
       "../node_modules/@nestjs/typeorm/dist/typeorm.module.d.ts",
       "../node_modules/@nestjs/typeorm/dist/index.d.ts",
       "../node_modules/@nestjs/typeorm/index.d.ts",
-      "../src/users/users.controller.ts",
+      "../node_modules/class-validator/validation/ValidationError.d.ts",
+      "../node_modules/class-validator/validation/ValidatorOptions.d.ts",
+      "../node_modules/class-validator/validation-schema/ValidationSchema.d.ts",
+      "../node_modules/class-validator/container.d.ts",
+      "../node_modules/@types/validator/index.d.ts",
+      "../node_modules/class-validator/validation/ValidationTypeOptions.d.ts",
+      "../node_modules/class-validator/validation/ValidationArguments.d.ts",
+      "../node_modules/class-validator/decorator/ValidationOptions.d.ts",
+      "../node_modules/class-validator/decorator/decorators.d.ts",
+      "../node_modules/class-validator/validation/ValidatorConstraintInterface.d.ts",
+      "../node_modules/class-validator/validation/ValidationTypes.d.ts",
+      "../node_modules/class-validator/metadata/ValidationMetadataArgs.d.ts",
+      "../node_modules/class-validator/metadata/ValidationMetadata.d.ts",
+      "../node_modules/class-validator/validation/Validator.d.ts",
+      "../node_modules/class-validator/register-decorator.d.ts",
+      "../node_modules/class-validator/metadata/ConstraintMetadata.d.ts",
+      "../node_modules/class-validator/metadata/MetadataStorage.d.ts",
+      "../node_modules/class-validator/index.d.ts",
+      "../node_modules/@types/bcryptjs/index.d.ts",
+      "../src/users/user.entity.ts",
+      "../src/users/dto/auth-user.dto.ts",
+      "../src/users/users.repository.ts",
       "../src/users/users.service.ts",
+      "../src/users/users.controller.ts",
       "../src/users/users.module.ts",
       "../src/config/typeorm.config.ts",
-      [
-        "../src/app.module.ts",
-        [
-          {
-            "file": "../src/app.module.ts",
-            "start": 324,
-            "length": 24,
-            "messageText": "Cannot find module './user/user.controller'.",
-            "category": 1,
-            "code": 2307
-          }
-        ]
-      ],
+      "../src/app.module.ts",
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "../node_modules/@nestjs/core/adapters/index.d.ts",
       "../node_modules/@nestjs/core/injector/module-token-factory.d.ts",
@@ -13165,6 +13625,7 @@
       "../node_modules/@nestjs/core/injector/inquirer/inquirer-constants.d.ts",
       "../node_modules/@nestjs/core/injector/inquirer/index.d.ts",
       "../node_modules/@nestjs/core/injector/index.d.ts",
+      "../node_modules/@nestjs/core/metadata-scanner.d.ts",
       "../node_modules/@nestjs/core/middleware/routes-mapper.d.ts",
       "../node_modules/@nestjs/core/middleware/builder.d.ts",
       "../node_modules/@nestjs/core/middleware/index.d.ts",
@@ -13180,7 +13641,6 @@
       "../node_modules/@nestjs/core/services/index.d.ts",
       "../node_modules/@nestjs/core/index.d.ts",
       "../src/main.ts",
-      "../src/users/users.repository.ts",
       "../node_modules/@types/anymatch/index.d.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
@@ -13217,7 +13677,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/users/user.entity.ts"
+      "../src/users/dto/create-user.dto.ts"
     ]
   },
   "version": "3.7.5"
