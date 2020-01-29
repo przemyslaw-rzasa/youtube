@@ -8,17 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const bcrypt = require("bcryptjs");
-const user_entity_1 = require("./user.entity");
 const common_1 = require("@nestjs/common");
+const user_entity_1 = require("./user.entity");
 let UserRepository = class UserRepository extends typeorm_1.Repository {
-    async validateUser(authUserDto) {
-        const { email, password } = authUserDto;
-        const user = await this.findOne({ email });
-        if (user && (await user.validatePassword(password))) {
-            return user;
-        }
-        return null;
-    }
     async createUser(createUserDto) {
         const user = new user_entity_1.User();
         const salt = await bcrypt.genSalt();
@@ -38,6 +30,7 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
         delete user.password;
         return user;
     }
+    async updateUser(updateUserDto) { }
 };
 UserRepository = __decorate([
     typeorm_1.EntityRepository(user_entity_1.User)

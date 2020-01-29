@@ -22,12 +22,11 @@ let UsersService = class UsersService {
     async createUser(createUserDto) {
         return await this.userRepository.createUser(createUserDto);
     }
-    async singIn(authUserDto) {
-        const user = await this.userRepository.validateUser(authUserDto);
-        if (!user) {
-            throw new common_1.NotFoundException();
-        }
-        return user;
+    async updateUser(updateUserDto) {
+        return await this.userRepository.updateUser(updateUserDto);
+    }
+    async findOne(...data) {
+        return this.userRepository.findOne(...data);
     }
 };
 UsersService = __decorate([

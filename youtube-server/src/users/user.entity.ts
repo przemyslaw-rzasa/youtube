@@ -16,6 +16,7 @@ export class User extends BaseEntity {
   @Column()
   email: string;
 
+  // @todo: read about salt storage
   @Column()
   salt: string;
 
@@ -25,6 +26,12 @@ export class User extends BaseEntity {
   validatePassword = async password => {
     const hashedPassword = await bcrypt.hash(password, this.salt);
 
-    return hashedPassword === password;
+    return hashedPassword === this.password;
   };
+
+  // create = data => {
+  //   this.save();
+  // }
 }
+
+// @todo: Delete dto's, instead of that use entity

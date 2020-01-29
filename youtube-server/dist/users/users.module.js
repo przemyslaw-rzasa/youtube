@@ -17,7 +17,8 @@ UsersModule = __decorate([
     common_1.Module({
         controllers: [users_controller_1.UsersController],
         providers: [users_service_1.UsersService],
-        imports: [typeorm_1.TypeOrmModule.forFeature([users_repository_1.UserRepository])]
+        imports: [typeorm_1.TypeOrmModule.forFeature([users_repository_1.UserRepository])],
+        exports: [users_service_1.UsersService]
     })
 ], UsersModule);
 exports.UsersModule = UsersModule;

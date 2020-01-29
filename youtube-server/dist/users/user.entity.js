@@ -16,7 +16,7 @@ let User = class User extends typeorm_1.BaseEntity {
         super(...arguments);
         this.validatePassword = async (password) => {
             const hashedPassword = await bcrypt.hash(password, this.salt);
-            return hashedPassword === password;
+            return hashedPassword === this.password;
         };
     }
 };

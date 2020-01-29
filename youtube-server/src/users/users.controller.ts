@@ -3,24 +3,42 @@ import {
   Post,
   Body,
   UsePipes,
-  ValidationPipe
+  ValidationPipe,
+  Put,
+  Delete,
+  Get,
+  UseGuards
 } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UsersService } from "./users.service";
-import { AuthUserDto } from "./dto/auth-user.dto";
+import { AuthGuard } from "@nestjs/passport";
 
 @Controller("users")
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @Post("/sign-up")
+  @Post()
   @UsePipes(ValidationPipe)
-  signUp(@Body() createUserDto: CreateUserDto) {
+  createUser(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }
 
-  @Post("/sign-in")
-  async singIn(@Body() authUserDto: AuthUserDto) {
-    return this.usersService.singIn(authUserDto);
+  @Put()
+  @UsePipes(ValidationPipe)
+  updateUser(@Body() updateUserDto: CreateUserDto) {
+    return this.usersService.updateUser(updateUserDto);
+  }
+
+  @Delete()
+  deleteUser(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.createUser(createUserDto);
+  }
+
+  // @todo: use also 'local' strategy
+  // Just for testing purpose
+  @UseGuards(AuthGuard("jwt"))
+  @Get("auth-test")
+  async testAuth() {
+    return "Success!";
   }
 }
