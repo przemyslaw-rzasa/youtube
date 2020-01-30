@@ -24,6 +24,7 @@ let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport
         this.authService = authService;
     }
     async validate(data) {
+        console.log("JWT VALIDATE");
         return data;
     }
 };

@@ -23,15 +23,24 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  fromData = data => {
+    Object.entries(data).forEach(([key, value]) => (this[key] = value));
+  };
+
   validatePassword = async password => {
     const hashedPassword = await bcrypt.hash(password, this.salt);
 
     return hashedPassword === this.password;
   };
 
-  // create = data => {
-  //   this.save();
-  // }
-}
+  create = async () => {
+    this.salt = await bcrypt.genSalt();
 
-// @todo: Delete dto's, instead of that use entity
+    this.password = await bcrypt.hash(this.password, this.salt);
+
+    await this.save();
+
+    delete this.password;
+    delete this.salt;
+  };
+}

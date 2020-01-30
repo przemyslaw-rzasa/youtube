@@ -14,11 +14,12 @@ const jwt_strategy_1 = require("./jwt.strategy");
 const constants_1 = require("./constants");
 const auth_controller_1 = require("./auth.controller");
 const users_module_1 = require("../users/users.module");
+const local_strategy_1 = require("./local.strategy");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     common_1.Module({
-        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy],
+        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy, local_strategy_1.LocalStrategy],
         imports: [
             users_module_1.UsersModule,
             passport_1.PassportModule,

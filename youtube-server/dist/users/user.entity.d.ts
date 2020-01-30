@@ -4,5 +4,7 @@ export declare class User extends BaseEntity {
     email: string;
     salt: string;
     password: string;
+    fromData: (data: any) => void;
     validatePassword: (password: any) => Promise<boolean>;
+    create: () => Promise<void>;
 }

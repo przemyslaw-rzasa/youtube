@@ -8,32 +8,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
+const passport_1 = require("@nestjs/passport");
+const passport_local_1 = require("passport-local");
 const auth_service_1 = require("./auth.service");
 const user_entity_1 = require("../users/user.entity");
-let AuthController = class AuthController {
+let LocalStrategy = class LocalStrategy extends passport_1.PassportStrategy(passport_local_1.Strategy) {
     constructor(authService) {
+        super();
         this.authService = authService;
+        console.log("Local Strategy construct");
     }
-    async signIn(authCredentialsDto) {
-        console.log("/sign-in passed");
-        return this.authService.signIn(authCredentialsDto);
+    async validate(authCredentialsDto) {
+        console.log("LOCAL VALIDATE");
+        const user = await this.authService.validateUser(authCredentialsDto);
+        if (!user) {
+            throw new common_1.UnauthorizedException("Invalid credentials");
+        }
+        return user;
     }
 };
-__decorate([
-    common_1.Post("/sign-in"),
-    __param(0, common_1.Body()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_entity_1.User]),
-    __metadata("design:returntype", Promise)
-], AuthController.prototype, "signIn", null);
-AuthController = __decorate([
-    common_1.Controller("auth"),
+LocalStrategy = __decorate([
+    common_1.Injectable(),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
-], AuthController);
-exports.AuthController = AuthController;
-//# sourceMappingURL=auth.controller.js.map
+], LocalStrategy);
+exports.LocalStrategy = LocalStrategy;
+//# sourceMappingURL=local.strategy.js.map

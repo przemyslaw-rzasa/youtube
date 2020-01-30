@@ -14,9 +14,19 @@ const typeorm_1 = require("typeorm");
 let User = class User extends typeorm_1.BaseEntity {
     constructor() {
         super(...arguments);
+        this.fromData = data => {
+            Object.entries(data).forEach(([key, value]) => (this[key] = value));
+        };
         this.validatePassword = async (password) => {
             const hashedPassword = await bcrypt.hash(password, this.salt);
             return hashedPassword === this.password;
+        };
+        this.create = async () => {
+            this.salt = await bcrypt.genSalt();
+            this.password = await bcrypt.hash(this.password, this.salt);
+            await this.save();
+            delete this.password;
+            delete this.salt;
         };
     }
 };

@@ -6,9 +6,10 @@ import { JwtStrategy } from "./jwt.strategy";
 import { SECRET } from "./constants";
 import { AuthController } from "./auth.controller";
 import { UsersModule } from "src/users/users.module";
+import { LocalStrategy } from "./local.strategy";
 
 @Module({
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, LocalStrategy],
   imports: [
     UsersModule,
     PassportModule,
