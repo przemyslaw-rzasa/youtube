@@ -16,23 +16,34 @@ const common_1 = require("@nestjs/common");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const users_service_1 = require("./users.service");
 const passport_1 = require("@nestjs/passport");
+const get_user_decorator_1 = require("../auth/get-user.decorator");
+const user_entity_1 = require("./user.entity");
+const update_user_dto_1 = require("./dto/update-user.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
+    getUser(user) {
+        return user;
+    }
     createUser(createUserDto) {
         return this.usersService.createUser(createUserDto);
     }
-    updateUser(updateUserDto) {
-        return this.usersService.updateUser(updateUserDto);
+    updateUser(updateUserDto, user) {
+        return this.usersService.updateUser(updateUserDto, user);
     }
     deleteUser(createUserDto) {
         return this.usersService.createUser(createUserDto);
     }
-    async testAuth() {
-        return "Success!";
-    }
 };
+__decorate([
+    common_1.Get(),
+    common_1.UseGuards(passport_1.AuthGuard("jwt")),
+    __param(0, get_user_decorator_1.GetUser()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_entity_1.User]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getUser", null);
 __decorate([
     common_1.Post(),
     common_1.UsePipes(common_1.ValidationPipe),
@@ -44,25 +55,20 @@ __decorate([
 __decorate([
     common_1.Put(),
     common_1.UsePipes(common_1.ValidationPipe),
-    __param(0, common_1.Body()),
+    common_1.UseGuards(passport_1.AuthGuard("jwt")),
+    __param(0, common_1.Body()), __param(1, get_user_decorator_1.GetUser()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:paramtypes", [update_user_dto_1.UpdateUserDto, Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "updateUser", null);
 __decorate([
     common_1.Delete(),
+    common_1.UseGuards(passport_1.AuthGuard("jwt")),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "deleteUser", null);
-__decorate([
-    common_1.UseGuards(passport_1.AuthGuard("jwt")),
-    common_1.Get("auth-test"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "testAuth", null);
 UsersController = __decorate([
     common_1.Controller("users"),
     __metadata("design:paramtypes", [users_service_1.UsersService])

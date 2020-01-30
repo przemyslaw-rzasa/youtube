@@ -16,13 +16,14 @@ const auth_service_1 = require("./auth.service");
 const user_entity_1 = require("../users/user.entity");
 let LocalStrategy = class LocalStrategy extends passport_1.PassportStrategy(passport_local_1.Strategy) {
     constructor(authService) {
-        super();
+        super({
+            usernameField: "email",
+            passwordField: "password"
+        });
         this.authService = authService;
-        console.log("Local Strategy construct");
     }
-    async validate(authCredentialsDto) {
-        console.log("LOCAL VALIDATE");
-        const user = await this.authService.validateUser(authCredentialsDto);
+    async validate(email, password) {
+        const user = await this.authService.validateUser(email, password);
         if (!user) {
             throw new common_1.UnauthorizedException("Invalid credentials");
         }

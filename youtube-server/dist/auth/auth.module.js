@@ -22,9 +22,9 @@ AuthModule = __decorate([
         providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy, local_strategy_1.LocalStrategy],
         imports: [
             users_module_1.UsersModule,
-            passport_1.PassportModule,
+            passport_1.PassportModule.register({ defaultStrategy: "local" }),
             jwt_1.JwtModule.register({
-                secret: constants_1.SECRET,
+                secret: constants_1.JWT_SECRET,
                 signOptions: {
                     expiresIn: "100000000s"
                 }

@@ -1,26 +1,29 @@
 import {
   BaseEntity,
+  Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToOne,
-  Entity
+  ManyToOne
 } from "typeorm";
-import { User } from "src/users/user.entity";
+import { Channel } from "src/channels/channel.entity";
 
 @Entity()
-export class Channel extends BaseEntity {
+export class Video extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @ManyToOne(
-    type => User,
-    user => user
+    type => Channel,
+    channel => channel
   )
-  user: User;
+  channel: Channel;
 
   @Column()
   name: string;
 
   @Column()
   description: string;
+
+  @Column()
+  href: string;
 }

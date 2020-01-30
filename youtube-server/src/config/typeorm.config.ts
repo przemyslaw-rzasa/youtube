@@ -1,5 +1,6 @@
 import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 import { User } from "src/users/user.entity";
+import { Channel } from "src/channels/channel.entity";
 
 export const typeOrmConfig: PostgresConnectionOptions = {
   type: "postgres",
@@ -7,6 +8,6 @@ export const typeOrmConfig: PostgresConnectionOptions = {
   username: "youtube",
   password: "youtube",
   database: "youtube",
-  entities: [User],
+  entities: [User, Channel],
   synchronize: true
 };

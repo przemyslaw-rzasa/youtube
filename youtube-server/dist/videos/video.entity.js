@@ -10,27 +10,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const user_entity_1 = require("../users/user.entity");
-let Channel = class Channel extends typeorm_1.BaseEntity {
+const channel_entity_1 = require("../channels/channel.entity");
+let Video = class Video extends typeorm_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Channel.prototype, "id", void 0);
+], Video.prototype, "id", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => user_entity_1.User, user => user),
-    __metadata("design:type", user_entity_1.User)
-], Channel.prototype, "user", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Channel.prototype, "name", void 0);
+    typeorm_1.ManyToOne(type => channel_entity_1.Channel, channel => channel),
+    __metadata("design:type", channel_entity_1.Channel)
+], Video.prototype, "channel", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], Channel.prototype, "description", void 0);
-Channel = __decorate([
+], Video.prototype, "name", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Video.prototype, "description", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Video.prototype, "href", void 0);
+Video = __decorate([
     typeorm_1.Entity()
-], Channel);
-exports.Channel = Channel;
-//# sourceMappingURL=channel.entity.js.map
+], Video);
+exports.Video = Video;
+//# sourceMappingURL=video.entity.js.map

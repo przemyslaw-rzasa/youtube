@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const users_repository_1 = require("./users.repository");
+const user_entity_1 = require("./user.entity");
 let UsersService = class UsersService {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -22,8 +23,16 @@ let UsersService = class UsersService {
     async createUser(createUserDto) {
         return await this.userRepository.createUser(createUserDto);
     }
-    async updateUser(updateUserDto) {
-        return await this.userRepository.updateUser(updateUserDto);
+    async updateUser(updateUserDto, user) {
+        const changesForeignId = updateUserDto.id && updateUserDto.id !== user.id;
+        const isAdmin = user.role === user_entity_1.Role.ADMIN;
+        if (changesForeignId) {
+            if (!isAdmin) {
+                throw new common_1.MethodNotAllowedException();
+            }
+        }
+        const newUserData = Object.assign({ id: changesForeignId ? updateUserDto.id : user.id }, updateUserDto);
+        return await this.userRepository.updateUser(newUserData);
     }
     async findOne(...data) {
         return this.userRepository.findOne(...data);

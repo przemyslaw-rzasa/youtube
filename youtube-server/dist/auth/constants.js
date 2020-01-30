@@ -1,4 +1,4 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SECRET = "verySecretPassword";
+exports.JWT_SECRET = "verySecretPassword";
 //# sourceMappingURL=constants.js.map

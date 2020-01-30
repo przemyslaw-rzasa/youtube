@@ -12,10 +12,19 @@ import {
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UsersService } from "./users.service";
 import { AuthGuard } from "@nestjs/passport";
+import { GetUser } from "src/auth/get-user.decorator";
+import { User } from "./user.entity";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Controller("users")
 export class UsersController {
   constructor(private usersService: UsersService) {}
+
+  @Get()
+  @UseGuards(AuthGuard("jwt"))
+  getUser(@GetUser() user: User) {
+    return user;
+  }
 
   @Post()
   @UsePipes(ValidationPipe)
@@ -25,20 +34,14 @@ export class UsersController {
 
   @Put()
   @UsePipes(ValidationPipe)
-  updateUser(@Body() updateUserDto: CreateUserDto) {
-    return this.usersService.updateUser(updateUserDto);
+  @UseGuards(AuthGuard("jwt"))
+  updateUser(@Body() updateUserDto: UpdateUserDto, @GetUser() user) {
+    return this.usersService.updateUser(updateUserDto, user);
   }
 
   @Delete()
+  @UseGuards(AuthGuard("jwt"))
   deleteUser(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
-  }
-
-  // @todo: use also 'local' strategy
-  // Just for testing purpose
-  @UseGuards(AuthGuard("jwt"))
-  @Get("auth-test")
-  async testAuth() {
-    return "Success!";
   }
 }

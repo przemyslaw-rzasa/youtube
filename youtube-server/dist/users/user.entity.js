@@ -11,9 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt = require("bcryptjs");
 const typeorm_1 = require("typeorm");
+const channel_entity_1 = require("../channels/channel.entity");
+var Role;
+(function (Role) {
+    Role["ADMIN"] = "admin";
+    Role["USER"] = "user";
+})(Role = exports.Role || (exports.Role = {}));
 let User = class User extends typeorm_1.BaseEntity {
     constructor() {
         super(...arguments);
+        this.role = Role.USER;
         this.fromData = data => {
             Object.entries(data).forEach(([key, value]) => (this[key] = value));
         };
@@ -21,9 +28,20 @@ let User = class User extends typeorm_1.BaseEntity {
             const hashedPassword = await bcrypt.hash(password, this.salt);
             return hashedPassword === this.password;
         };
-        this.create = async () => {
+        this.hashPassword = async () => {
             this.salt = await bcrypt.genSalt();
             this.password = await bcrypt.hash(this.password, this.salt);
+        };
+        this.create = async () => {
+            this.hashPassword();
+            await this.save();
+            delete this.password;
+            delete this.salt;
+        };
+        this.update = async ({ passwordChanged }) => {
+            if (passwordChanged) {
+                this.hashPassword();
+            }
             await this.save();
             delete this.password;
             delete this.salt;
@@ -46,6 +64,14 @@ __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], User.prototype, "role", void 0);
+__decorate([
+    typeorm_1.OneToMany(type => channel_entity_1.Channel, channel => channel),
+    __metadata("design:type", Array)
+], User.prototype, "channels", void 0);
 User = __decorate([
     typeorm_1.Entity(),
     typeorm_1.Unique(["email"])

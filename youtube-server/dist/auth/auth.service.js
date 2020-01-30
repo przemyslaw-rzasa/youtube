@@ -18,23 +18,15 @@ let AuthService = class AuthService {
         this.usersService = usersService;
         this.jwtService = jwtService;
     }
-    async validateUser(authUserDto) {
-        const { email, password } = authUserDto;
+    async validateUser(email, password) {
         const user = await this.usersService.findOne({ email });
         if (user && (await user.validatePassword(password))) {
             return user;
         }
         return null;
     }
-    async signIn(authCredentialsDto) {
-        const user = await this.validateUser(authCredentialsDto);
-        if (!user) {
-            throw new common_1.UnauthorizedException("Invalid credentials");
-        }
-        const payload = { email: user.email, id: user.id };
-        return {
-            access_token: this.jwtService.sign(payload)
-        };
+    async getToken({ id, email, role }) {
+        return { jwt_token: this.jwtService.sign({ id, email, role }) };
     }
 };
 AuthService = __decorate([

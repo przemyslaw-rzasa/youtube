@@ -7,6 +7,7 @@ import {
 
 import { User } from "./user.entity";
 import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -28,5 +29,15 @@ export class UserRepository extends Repository<User> {
     return user;
   }
 
-  async updateUser(updateUserDto: CreateUserDto) {}
+  async updateUser(userData: UpdateUserDto) {
+    const user = await User.findOne({ id: userData.id });
+
+    user.fromData(userData);
+
+    await user.update({
+      passwordChanged: !!userData.password
+    });
+
+    return user;
+  }
 }

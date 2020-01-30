@@ -24,7 +24,14 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
         }
         return user;
     }
-    async updateUser(updateUserDto) { }
+    async updateUser(userData) {
+        const user = await user_entity_1.User.findOne({ id: userData.id });
+        user.fromData(userData);
+        await user.update({
+            passwordChanged: !!userData.password
+        });
+        return user;
+    }
 };
 UserRepository = __decorate([
     typeorm_1.EntityRepository(user_entity_1.User)

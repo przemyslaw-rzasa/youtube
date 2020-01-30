@@ -14,19 +14,21 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
+const passport_1 = require("@nestjs/passport");
+const get_user_decorator_1 = require("./get-user.decorator");
 const user_entity_1 = require("../users/user.entity");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
-    async signIn(authCredentialsDto) {
-        console.log("/sign-in passed");
-        return this.authService.signIn(authCredentialsDto);
+    async signIn(user) {
+        return this.authService.getToken(user);
     }
 };
 __decorate([
+    common_1.UseGuards(passport_1.AuthGuard("local")),
     common_1.Post("/sign-in"),
-    __param(0, common_1.Body()),
+    __param(0, get_user_decorator_1.GetUser()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_entity_1.User]),
     __metadata("design:returntype", Promise)
