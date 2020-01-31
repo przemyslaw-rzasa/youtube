@@ -2,7 +2,8 @@ import { EntityRepository, Repository } from "typeorm";
 import * as bcrypt from "bcryptjs";
 import {
   ConflictException,
-  InternalServerErrorException
+  InternalServerErrorException,
+  NotFoundException
 } from "@nestjs/common";
 
 import { User } from "./user.entity";
@@ -33,12 +34,30 @@ export class UserRepository extends Repository<User> {
   async updateUser(userData: UpdateUserDto) {
     const user = await User.findOne({ id: userData.id });
 
+    if (!user) {
+      throw new NotFoundException();
+    }
+
     user.fromData(userData);
 
-    await user.update({
-      passwordChanged: !!userData.password
-    });
+    try {
+      await user.update({
+        passwordChanged: !!userData.password
+      });
 
-    return user;
+      return user;
+    } catch (error) {
+      if (error.code === ERROR_CODES.CONFLICT) {
+        throw new ConflictException("User with this email already exists");
+      }
+
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async deleteUser(id: number) {
+    const user = await User.findOne({ id });
+
+    await user.remove();
   }
 }

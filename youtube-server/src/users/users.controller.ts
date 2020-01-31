@@ -7,7 +7,8 @@ import {
   Put,
   Delete,
   Get,
-  UseGuards
+  UseGuards,
+  HttpCode
 } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UsersService } from "./users.service";
@@ -15,6 +16,7 @@ import { AuthGuard } from "@nestjs/passport";
 import { GetUser } from "src/auth/get-user.decorator";
 import { User } from "./user.entity";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { DeleteUserDto } from "./dto/delete-user.dto";
 
 @Controller("users")
 export class UsersController {
@@ -27,6 +29,7 @@ export class UsersController {
   }
 
   @Post()
+  @HttpCode(201)
   @UsePipes(ValidationPipe)
   createUser(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
@@ -40,8 +43,10 @@ export class UsersController {
   }
 
   @Delete()
+  @HttpCode(204)
   @UseGuards(AuthGuard("jwt"))
-  deleteUser(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.createUser(createUserDto);
+  deleteUser(@Body() deleteUserDto: DeleteUserDto, @GetUser() user) {
+    console.log(deleteUserDto);
+    return this.usersService.deleteUser(deleteUserDto, user);
   }
 }

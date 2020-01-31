@@ -5,4 +5,7 @@ export declare class Channel extends BaseEntity {
     user: User;
     name: string;
     description: string;
+    fromData: (data: any) => void;
+    create: () => Promise<this>;
+    update: () => Promise<this>;
 }

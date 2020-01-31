@@ -4,6 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { UserRepository } from "./users.repository";
 import { User, Role } from "./user.entity";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { DeleteUserDto } from "./dto/delete-user.dto";
 
 @Injectable()
 export class UsersService {
@@ -16,21 +17,36 @@ export class UsersService {
   }
 
   async updateUser(updateUserDto: UpdateUserDto, user: User) {
-    const changesForeignId = updateUserDto.id && updateUserDto.id !== user.id;
+    const updatesForeignUser = updateUserDto.id && updateUserDto.id !== user.id;
     const isAdmin = user.role === Role.ADMIN;
 
-    if (changesForeignId) {
+    if (updatesForeignUser) {
       if (!isAdmin) {
         throw new MethodNotAllowedException();
       }
     }
 
     const newUserData = {
-      id: changesForeignId ? updateUserDto.id : user.id,
+      id: updatesForeignUser ? updateUserDto.id : user.id,
       ...updateUserDto
     };
 
     return await this.userRepository.updateUser(newUserData);
+  }
+
+  async deleteUser(deleteUserDto: DeleteUserDto, user: User) {
+    const deletesForeignUser = deleteUserDto.id && deleteUserDto.id !== user.id;
+    const isAdmin = user.role === Role.ADMIN;
+
+    if (deletesForeignUser) {
+      if (!isAdmin) {
+        throw new MethodNotAllowedException();
+      }
+    }
+
+    const id = deletesForeignUser ? deleteUserDto.id : user.id;
+
+    return await this.userRepository.deleteUser(id);
   }
 
   async findOne(...data) {

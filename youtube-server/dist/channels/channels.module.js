@@ -9,12 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const channels_controller_1 = require("./channels.controller");
 const channels_service_1 = require("./channels.service");
+const typeorm_1 = require("@nestjs/typeorm");
+const channels_repository_1 = require("./channels.repository");
 let ChannelsModule = class ChannelsModule {
 };
 ChannelsModule = __decorate([
     common_1.Module({
         controllers: [channels_controller_1.ChannelsController],
-        providers: [channels_service_1.ChannelsService]
+        providers: [channels_service_1.ChannelsService],
+        imports: [typeorm_1.TypeOrmModule.forFeature([channels_repository_1.ChannelsRepository])]
     })
 ], ChannelsModule);
 exports.ChannelsModule = ChannelsModule;

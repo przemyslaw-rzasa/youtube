@@ -5,4 +5,5 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 export declare class UserRepository extends Repository<User> {
     createUser(createUserDto: CreateUserDto): Promise<User>;
     updateUser(userData: UpdateUserDto): Promise<User>;
+    deleteUser(id: number): Promise<void>;
 }

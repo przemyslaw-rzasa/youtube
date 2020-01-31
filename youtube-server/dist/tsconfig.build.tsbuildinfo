@@ -2218,11 +2218,11 @@
         "signature": "9dfe431ab1485e17a6055e186c49da9d23af74b965f2e99f8acc6c958778608f"
       },
       "../src/channels/channel.entity.ts": {
-        "version": "f3ed8049a898c3da1b843cb98d5eeee6acaf70d6c2671ad2b65f40915b3bbb32",
-        "signature": "4dbffd11eae5dd98fc9f603685e686f838a02af2b64341f20c539fe475a259f5"
+        "version": "09e470544e68f444c6e62e82ac48ccb8c3f173388ac252485ef881c41f2c1576",
+        "signature": "d509fce70ea024d2d3a74e4c7fb9e0b666f9011ced68017484d104f0dfbb679c"
       },
       "../src/users/user.entity.ts": {
-        "version": "a4285d4a1672d852f862693d7ed5443b8cdfd1b8348eb66a70e7592476b47168",
+        "version": "7901f1ebb190ee68592401e0f9f97c6909433b74198857c3547af01fd6a84cbd",
         "signature": "fcad1329890dbd0471695c6ae336dd9bc46cb511b7768fe7a58601bc3a3e434c"
       },
       "../src/users/dto/update-user.dto.ts": {
@@ -2234,12 +2234,16 @@
         "signature": "43863ed85f1cfdced8a81934ece494da2e9399ce802d92cfe6e9c316095deb9e"
       },
       "../src/users/users.repository.ts": {
-        "version": "4b3b15a0d1c464c16bc1a48bbe3b6f10f9bb55fcdd0d6e623e7f2a9f5769ec0a",
-        "signature": "7396ab474bd15369c1079c684ae84422ad19e173c6e8cfff998e9a5c0918db48"
+        "version": "6852198da742f0a3b68df9678bdf3a18627155126719c2a210250e533688b602",
+        "signature": "654f5097a98c17d27ebd6d279f8a3df760a4ac67d8459a4ee5a885283d4831a2"
+      },
+      "../src/users/dto/delete-user.dto.ts": {
+        "version": "d0ff1354fa2fd2ac43305570c23b35e3837a485bfea7eeb4c1cd6ed26cdd23ad",
+        "signature": "94737ada462698ada76de60f988da17099647854b1699878c756222b5a96e2d8"
       },
       "../src/users/users.service.ts": {
-        "version": "7e0c6e06a63d636ed577ae358145e45594c90e6cd439b20c6683ed69069e5926",
-        "signature": "ac764822964e7507a793b66a869a602fe70547bc9355b4abee0532ceb42104f3"
+        "version": "bbcb96eb9ffe2b6610567f1c36f671e2a53827033c3a8b4abab6cb747831e86a",
+        "signature": "2f43ba32a105bdde5c22ef4cce9abad1fb347303bc7dcb5ac8bf0819aeaf634d"
       },
       "../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts": {
         "version": "ba63131c5e91f797736444933af16ffa42f9f8c150d859ec65f568f037a416ea",
@@ -2286,8 +2290,8 @@
         "signature": "2edbd67ef5c8b5f94d7abaea90ab48657ff66e5277a1409c425ff253daa65751"
       },
       "../src/users/users.controller.ts": {
-        "version": "5d2a6676b889e74cf4a6f6d9f9e0f0f3f4fda9d244333703437ec232620e7958",
-        "signature": "a456f29780cc375b43d3130ae0a6f72ffef09d499332d42323793faa41648da1"
+        "version": "3f6acdd40159f0d77d1d6cfefee3fd34643d0555260e27afaa80c3477cd95472",
+        "signature": "43d1ab5c5480c8543570f876386ac0e36f89ac61eea446dd94877768d26f1ae0"
       },
       "../src/users/users.module.ts": {
         "version": "3d0cbfa426f9c92265a111250c2b893b635c60cff122c421a8160a5f895ea9db",
@@ -2297,16 +2301,32 @@
         "version": "c0ec6329a6092b3cdef953726e3b868dfe70627d08f4e04a2a8c6520489d0d03",
         "signature": "a0ca9bb5a58b5c76393766bd96049e4c0bcb91fd6b2de50892da9b1221d33b73"
       },
-      "../src/channels/channels.controller.ts": {
-        "version": "47680a55a5e05dcb659e38a75d7bc34658179bcb3370d7d1dda4b15aa7c871c1",
-        "signature": "db34c9cfd158fa2c9be6e503cdbb40a995c8c568aae17d19cca930d292b530ec"
+      "../src/channels/dto/create-channel.dto.ts": {
+        "version": "7a0fc355f018ee8e7733b1b9595edfcde1ab1c6877313015da7c2514483598c1",
+        "signature": "47bf3d25bf6ec609ac19afcb5d07d1055ceb541ce0c68f8d3f65ceb69c2910dc"
+      },
+      "../src/channels/dto/update-channel.dto.ts": {
+        "version": "38ceef3950333da105b13814c333a98d73f114cbd222001b84783dac85bb5363",
+        "signature": "1f8ace0c12723753041285e9ff01704cfbe80d84d99809a6e64146fbe801f4ca"
+      },
+      "../src/channels/dto/delete-channel.dto.ts": {
+        "version": "3f54c39c9df7b40a6cec85f1f22a4ac67cf9d17519d8a070d66c0fba58b7f232",
+        "signature": "e2a62924147f6aed82fe9bfd9f8611b5fcbfe0c4f8b04509a116efe428e6e789"
+      },
+      "../src/channels/channels.repository.ts": {
+        "version": "9c9fbcd3ac293dd3d97f5b045e37c1c3c3866f4e7fd17ab78ca35fe5f63ac813",
+        "signature": "c0106b3659f9bb993a38ae2f209d1d06844155f7d22b211d8368bd99c5f85844"
       },
       "../src/channels/channels.service.ts": {
-        "version": "02113f7cfea17e142a2107e588833991b323bce73b40a4754150441e0ce4a30d",
-        "signature": "933ffc3645e19d0c3f05de477327820239d92a2115410d85a846aa254d04c5b6"
+        "version": "53e7c3b394b19193072eb160e8136043966e0c3424a11b648bf32c10e0f2ed20",
+        "signature": "f0d09a0765db60c42bd2218daf6521ae0eab925471f6c6d3fa6559cb03b16437"
+      },
+      "../src/channels/channels.controller.ts": {
+        "version": "ba6ef82bc6cf3ea8adf8a06b34b87bb7c59eaad8c2a8266fc51455c0dc9f05e1",
+        "signature": "de92946948b48269e54bdd4f5d615349b1710dc7a1a0717caf08f528a281af3e"
       },
       "../src/channels/channels.module.ts": {
-        "version": "7bfe489a2226664a3a4bfe276f19e023899f448d21f39bebd4859870d13cca38",
+        "version": "6e36019bc6c800e16516d19a68522cf4738fbff8be04f5262ed1884a053a81f3",
         "signature": "927879af2d208d7e2ae9b14943333eb8cc5319e9aec8a8eeef5bdc411dd0b1ff"
       },
       "../src/videos/videos.controller.ts": {
@@ -7363,6 +7383,13 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "../src/users/dto/delete-user.dto.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
       "../src/users/users.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/users/dto/create-user.dto.ts",
@@ -7370,6 +7397,7 @@
         "../src/users/users.repository.ts",
         "../src/users/user.entity.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/dto/delete-user.dto.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7466,6 +7494,7 @@
         "../src/auth/get-user.decorator.ts",
         "../src/users/user.entity.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/dto/delete-user.dto.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7491,8 +7520,35 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "../src/channels/channels.controller.ts": [
+      "../src/channels/dto/create-channel.dto.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/channels/dto/update-channel.dto.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/channels/dto/delete-channel.dto.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/channels/channels.repository.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../src/channels/channel.entity.ts",
+        "../src/channels/dto/create-channel.dto.ts",
+        "../src/users/user.entity.ts",
         "../node_modules/@nestjs/common/index.d.ts",
+        "../src/constants/typeOrm.ts",
+        "../src/channels/dto/update-channel.dto.ts",
+        "../src/channels/dto/delete-channel.dto.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7500,6 +7556,26 @@
       ],
       "../src/channels/channels.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../src/channels/dto/create-channel.dto.ts",
+        "../src/users/user.entity.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/channels/channels.repository.ts",
+        "../src/channels/dto/update-channel.dto.ts",
+        "../src/channels/channel.entity.ts",
+        "../src/channels/dto/delete-channel.dto.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/channels/channels.controller.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../src/channels/dto/create-channel.dto.ts",
+        "../src/channels/channels.service.ts",
+        "../src/auth/get-user.decorator.ts",
+        "../node_modules/@nestjs/passport/index.d.ts",
+        "../src/channels/dto/update-channel.dto.ts",
+        "../src/channels/dto/delete-channel.dto.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7509,6 +7585,8 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/channels/channels.controller.ts",
         "../src/channels/channels.service.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/channels/channels.repository.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -12918,7 +12996,8 @@
         "../src/users/users.repository.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/user.entity.ts",
-        "../src/users/dto/update-user.dto.ts"
+        "../src/users/dto/update-user.dto.ts",
+        "../src/users/dto/delete-user.dto.ts"
       ],
       "../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
@@ -12999,10 +13078,34 @@
         "../src/users/users.service.ts",
         "../src/users/user.entity.ts",
         "../src/users/dto/create-user.dto.ts",
-        "../src/users/dto/update-user.dto.ts"
+        "../src/users/dto/update-user.dto.ts",
+        "../src/users/dto/delete-user.dto.ts"
       ],
       "../src/config/typeorm.config.ts": [
         "../node_modules/typeorm/driver/postgres/postgresconnectionoptions.d.ts"
+      ],
+      "../src/channels/channels.repository.ts": [
+        "../src/channels/dto/create-channel.dto.ts",
+        "../src/users/user.entity.ts",
+        "../src/channels/channel.entity.ts",
+        "../src/channels/dto/update-channel.dto.ts",
+        "../src/channels/dto/delete-channel.dto.ts",
+        "../node_modules/typeorm/index.d.ts"
+      ],
+      "../src/channels/channels.service.ts": [
+        "../src/channels/channels.repository.ts",
+        "../src/channels/dto/create-channel.dto.ts",
+        "../src/users/user.entity.ts",
+        "../src/channels/channel.entity.ts",
+        "../src/channels/dto/update-channel.dto.ts",
+        "../src/channels/dto/delete-channel.dto.ts"
+      ],
+      "../src/channels/channels.controller.ts": [
+        "../src/channels/channel.entity.ts",
+        "../src/channels/channels.service.ts",
+        "../src/channels/dto/create-channel.dto.ts",
+        "../src/channels/dto/update-channel.dto.ts",
+        "../src/channels/dto/delete-channel.dto.ts"
       ],
       "../node_modules/@types/jsonwebtoken/index.d.ts": [
         "../node_modules/@types/node/ts3.5/index.d.ts",
@@ -14253,9 +14356,11 @@
       "../src/users/dto/create-user.dto.ts",
       "../node_modules/@types/bcryptjs/index.d.ts",
       "../src/channels/channel.entity.ts",
+      "../src/users/user.entity.ts",
       "../src/users/dto/update-user.dto.ts",
       "../src/constants/typeOrm.ts",
       "../src/users/users.repository.ts",
+      "../src/users/dto/delete-user.dto.ts",
       "../src/users/users.service.ts",
       "../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts",
       "../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
@@ -14268,11 +14373,14 @@
       "../node_modules/@nestjs/passport/dist/index.d.ts",
       "../node_modules/@nestjs/passport/index.d.ts",
       "../src/auth/get-user.decorator.ts",
-      "../src/users/users.controller.ts",
       "../src/users/users.module.ts",
       "../src/config/typeorm.config.ts",
-      "../src/channels/channels.controller.ts",
+      "../src/channels/dto/create-channel.dto.ts",
+      "../src/channels/dto/update-channel.dto.ts",
+      "../src/channels/dto/delete-channel.dto.ts",
+      "../src/channels/channels.repository.ts",
       "../src/channels/channels.service.ts",
+      "../src/channels/channels.controller.ts",
       "../src/channels/channels.module.ts",
       "../src/videos/videos.controller.ts",
       "../src/videos/videos.service.ts",
@@ -14369,7 +14477,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/users/user.entity.ts"
+      "../src/users/users.controller.ts"
     ]
   },
   "version": "3.7.5"

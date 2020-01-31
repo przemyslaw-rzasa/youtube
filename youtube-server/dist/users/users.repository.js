@@ -27,11 +27,26 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
     }
     async updateUser(userData) {
         const user = await user_entity_1.User.findOne({ id: userData.id });
+        if (!user) {
+            throw new common_1.NotFoundException();
+        }
         user.fromData(userData);
-        await user.update({
-            passwordChanged: !!userData.password
-        });
-        return user;
+        try {
+            await user.update({
+                passwordChanged: !!userData.password
+            });
+            return user;
+        }
+        catch (error) {
+            if (error.code === typeOrm_1.ERROR_CODES.CONFLICT) {
+                throw new common_1.ConflictException("User with this email already exists");
+            }
+            throw new common_1.InternalServerErrorException();
+        }
+    }
+    async deleteUser(id) {
+        const user = await user_entity_1.User.findOne({ id });
+        await user.remove();
     }
 };
 UserRepository = __decorate([

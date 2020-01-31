@@ -31,13 +31,14 @@ export class User extends BaseEntity {
 
   @Column({
     type: "enum",
-    enum: Role
+    enum: Role,
+    default: Role.USER
   })
-  role: Role = Role.USER;
+  role: Role;
 
   @OneToMany(
     type => Channel,
-    channel => channel
+    channel => channel.user
   )
   channels: Channel[];
 
@@ -58,7 +59,7 @@ export class User extends BaseEntity {
   };
 
   create = async () => {
-    this.hashPassword();
+    await this.hashPassword();
 
     await this.save();
 

@@ -20,7 +20,6 @@ var Role;
 let User = class User extends typeorm_1.BaseEntity {
     constructor() {
         super(...arguments);
-        this.role = Role.USER;
         this.fromData = data => {
             Object.entries(data).forEach(([key, value]) => (this[key] = value));
         };
@@ -33,7 +32,7 @@ let User = class User extends typeorm_1.BaseEntity {
             this.password = await bcrypt.hash(this.password, this.salt);
         };
         this.create = async () => {
-            this.hashPassword();
+            await this.hashPassword();
             await this.save();
             delete this.password;
             delete this.salt;
@@ -67,12 +66,13 @@ __decorate([
 __decorate([
     typeorm_1.Column({
         type: "enum",
-        enum: Role
+        enum: Role,
+        default: Role.USER
     }),
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => channel_entity_1.Channel, channel => channel),
+    typeorm_1.OneToMany(type => channel_entity_1.Channel, channel => channel.user),
     __metadata("design:type", Array)
 ], User.prototype, "channels", void 0);
 User = __decorate([

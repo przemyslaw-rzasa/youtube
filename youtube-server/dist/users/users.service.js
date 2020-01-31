@@ -24,15 +24,26 @@ let UsersService = class UsersService {
         return await this.userRepository.createUser(createUserDto);
     }
     async updateUser(updateUserDto, user) {
-        const changesForeignId = updateUserDto.id && updateUserDto.id !== user.id;
+        const updatesForeignUser = updateUserDto.id && updateUserDto.id !== user.id;
         const isAdmin = user.role === user_entity_1.Role.ADMIN;
-        if (changesForeignId) {
+        if (updatesForeignUser) {
             if (!isAdmin) {
                 throw new common_1.MethodNotAllowedException();
             }
         }
-        const newUserData = Object.assign({ id: changesForeignId ? updateUserDto.id : user.id }, updateUserDto);
+        const newUserData = Object.assign({ id: updatesForeignUser ? updateUserDto.id : user.id }, updateUserDto);
         return await this.userRepository.updateUser(newUserData);
+    }
+    async deleteUser(deleteUserDto, user) {
+        const deletesForeignUser = deleteUserDto.id && deleteUserDto.id !== user.id;
+        const isAdmin = user.role === user_entity_1.Role.ADMIN;
+        if (deletesForeignUser) {
+            if (!isAdmin) {
+                throw new common_1.MethodNotAllowedException();
+            }
+        }
+        const id = deletesForeignUser ? deleteUserDto.id : user.id;
+        return await this.userRepository.deleteUser(id);
     }
     async findOne(...data) {
         return this.userRepository.findOne(...data);

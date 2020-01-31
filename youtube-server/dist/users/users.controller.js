@@ -19,6 +19,7 @@ const passport_1 = require("@nestjs/passport");
 const get_user_decorator_1 = require("../auth/get-user.decorator");
 const user_entity_1 = require("./user.entity");
 const update_user_dto_1 = require("./dto/update-user.dto");
+const delete_user_dto_1 = require("./dto/delete-user.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -32,8 +33,9 @@ let UsersController = class UsersController {
     updateUser(updateUserDto, user) {
         return this.usersService.updateUser(updateUserDto, user);
     }
-    deleteUser(createUserDto) {
-        return this.usersService.createUser(createUserDto);
+    deleteUser(deleteUserDto, user) {
+        console.log(deleteUserDto);
+        return this.usersService.deleteUser(deleteUserDto, user);
     }
 };
 __decorate([
@@ -46,6 +48,7 @@ __decorate([
 ], UsersController.prototype, "getUser", null);
 __decorate([
     common_1.Post(),
+    common_1.HttpCode(201),
     common_1.UsePipes(common_1.ValidationPipe),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
@@ -63,10 +66,11 @@ __decorate([
 ], UsersController.prototype, "updateUser", null);
 __decorate([
     common_1.Delete(),
+    common_1.HttpCode(204),
     common_1.UseGuards(passport_1.AuthGuard("jwt")),
-    __param(0, common_1.Body()),
+    __param(0, common_1.Body()), __param(1, get_user_decorator_1.GetUser()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:paramtypes", [delete_user_dto_1.DeleteUserDto, Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "deleteUser", null);
 UsersController = __decorate([
