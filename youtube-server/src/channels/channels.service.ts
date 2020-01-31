@@ -41,10 +41,7 @@ export class ChannelsService {
   }
 
   async deleteChannel(deleteChannelDto: DeleteChannelDto, user: User) {
-    console.log(deleteChannelDto);
     const channel = await Channel.findOne({ id: deleteChannelDto.id });
-
-    console.log(channel);
 
     if (!channel) {
       throw new NotFoundException();

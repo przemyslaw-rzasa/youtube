@@ -23,9 +23,11 @@ export class User extends BaseEntity {
   @Column()
   email: string;
 
+  // @todo: Prevent return within Channel, when "eager" turned on
   @Column()
   salt: string;
 
+  // @todo: Prevent return within Channel, when "eager" turned on
   @Column()
   password: string;
 

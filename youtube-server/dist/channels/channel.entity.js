@@ -26,8 +26,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Channel.prototype, "id", void 0);
 __decorate([
+    typeorm_1.JoinColumn(),
     typeorm_1.ManyToOne(type => user_entity_1.User, user => user.channels, {
-        eager: true
+        eager: true,
+        onDelete: "CASCADE"
     }),
     __metadata("design:type", user_entity_1.User)
 ], Channel.prototype, "user", void 0);

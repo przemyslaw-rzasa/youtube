@@ -37,9 +37,7 @@ let ChannelsService = class ChannelsService {
         return await this.channelsRepository.updateChannel(updateChannelDto);
     }
     async deleteChannel(deleteChannelDto, user) {
-        console.log(deleteChannelDto);
         const channel = await channel_entity_1.Channel.findOne({ id: deleteChannelDto.id });
-        console.log(channel);
         if (!channel) {
             throw new common_1.NotFoundException();
         }

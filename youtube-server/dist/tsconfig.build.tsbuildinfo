@@ -2218,11 +2218,11 @@
         "signature": "9dfe431ab1485e17a6055e186c49da9d23af74b965f2e99f8acc6c958778608f"
       },
       "../src/channels/channel.entity.ts": {
-        "version": "09e470544e68f444c6e62e82ac48ccb8c3f173388ac252485ef881c41f2c1576",
+        "version": "dff5cf5b860a49cba5b60f998bab7aa1b58ba07c38596027ebcdf5ca6c818e38",
         "signature": "d509fce70ea024d2d3a74e4c7fb9e0b666f9011ced68017484d104f0dfbb679c"
       },
       "../src/users/user.entity.ts": {
-        "version": "7901f1ebb190ee68592401e0f9f97c6909433b74198857c3547af01fd6a84cbd",
+        "version": "16a4560e98814c9ce4d1f150ee8dc5aa9db3d079929e06914ac63bd60cff8f9e",
         "signature": "fcad1329890dbd0471695c6ae336dd9bc46cb511b7768fe7a58601bc3a3e434c"
       },
       "../src/users/dto/update-user.dto.ts": {
@@ -2318,7 +2318,7 @@
         "signature": "c0106b3659f9bb993a38ae2f209d1d06844155f7d22b211d8368bd99c5f85844"
       },
       "../src/channels/channels.service.ts": {
-        "version": "53e7c3b394b19193072eb160e8136043966e0c3424a11b648bf32c10e0f2ed20",
+        "version": "3d1ac04f9845206347543bb7e436d9b28b28f6f93ca04c79bbacf57c1541fe45",
         "signature": "f0d09a0765db60c42bd2218daf6521ae0eab925471f6c6d3fa6559cb03b16437"
       },
       "../src/channels/channels.controller.ts": {
@@ -14356,7 +14356,6 @@
       "../src/users/dto/create-user.dto.ts",
       "../node_modules/@types/bcryptjs/index.d.ts",
       "../src/channels/channel.entity.ts",
-      "../src/users/user.entity.ts",
       "../src/users/dto/update-user.dto.ts",
       "../src/constants/typeOrm.ts",
       "../src/users/users.repository.ts",
@@ -14373,6 +14372,7 @@
       "../node_modules/@nestjs/passport/dist/index.d.ts",
       "../node_modules/@nestjs/passport/index.d.ts",
       "../src/auth/get-user.decorator.ts",
+      "../src/users/users.controller.ts",
       "../src/users/users.module.ts",
       "../src/config/typeorm.config.ts",
       "../src/channels/dto/create-channel.dto.ts",
@@ -14477,7 +14477,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/users/users.controller.ts"
+      "../src/users/user.entity.ts"
     ]
   },
   "version": "3.7.5"

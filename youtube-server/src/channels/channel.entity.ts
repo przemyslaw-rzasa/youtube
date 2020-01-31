@@ -4,7 +4,8 @@ import {
   Column,
   ManyToOne,
   Entity,
-  Unique
+  Unique,
+  JoinColumn
 } from "typeorm";
 import { User } from "src/users/user.entity";
 
@@ -14,11 +15,13 @@ export class Channel extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @JoinColumn()
   @ManyToOne(
     type => User,
     user => user.channels,
     {
-      eager: true
+      eager: true,
+      onDelete: "CASCADE"
     }
   )
   user: User;
@@ -33,6 +36,7 @@ export class Channel extends BaseEntity {
     Object.entries(data).forEach(([key, value]) => (this[key] = value));
   };
 
+  // @todo: ??
   create = () => this.save();
 
   update = () => this.save();
