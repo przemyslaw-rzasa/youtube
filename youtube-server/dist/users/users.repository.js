@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const common_1 = require("@nestjs/common");
 const user_entity_1 = require("./user.entity");
+const typeOrm_1 = require("../constants/typeOrm");
 let UserRepository = class UserRepository extends typeorm_1.Repository {
     async createUser(createUserDto) {
         const user = new user_entity_1.User();
@@ -17,7 +18,7 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
             await user.create();
         }
         catch (error) {
-            if (error.code === "23505") {
+            if (error.code === typeOrm_1.ERROR_CODES.CONFLICT) {
                 throw new common_1.ConflictException("User with this email already exists");
             }
             throw new common_1.InternalServerErrorException();

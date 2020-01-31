@@ -12,6 +12,8 @@ services:
   server:
     container_name: youtube-server
     image: node:13.7.0-alpine3.11
+    environment:
+      - JWT_SECRET=verySecretPassword
     ports:
       - 9001:3000
     volumes:

@@ -13,13 +13,12 @@ const passport_jwt_1 = require("passport-jwt");
 const passport_1 = require("@nestjs/passport");
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
-const constants_1 = require("./constants");
 let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy) {
     constructor(authService) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: true,
-            secretOrKey: constants_1.JWT_SECRET
+            secretOrKey: process.env.JWT_SECRET
         });
         this.authService = authService;
     }

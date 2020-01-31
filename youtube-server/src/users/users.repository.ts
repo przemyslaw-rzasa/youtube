@@ -8,6 +8,7 @@ import {
 import { User } from "./user.entity";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { ERROR_CODES } from "src/constants/typeOrm";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -19,7 +20,7 @@ export class UserRepository extends Repository<User> {
     try {
       await user.create();
     } catch (error) {
-      if (error.code === "23505") {
+      if (error.code === ERROR_CODES.CONFLICT) {
         throw new ConflictException("User with this email already exists");
       }
 

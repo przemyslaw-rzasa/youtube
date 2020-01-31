@@ -29,7 +29,10 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @Column()
+  @Column({
+    type: "enum",
+    enum: Role
+  })
   role: Role = Role.USER;
 
   @OneToMany(
