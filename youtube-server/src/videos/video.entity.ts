@@ -14,7 +14,10 @@ export class Video extends BaseEntity {
 
   @ManyToOne(
     type => Channel,
-    channel => channel
+    channel => channel.videos,
+    {
+      onDelete: "CASCADE"
+    }
   )
   channel: Channel;
 
@@ -25,5 +28,9 @@ export class Video extends BaseEntity {
   description: string;
 
   @Column()
-  href: string;
+  videoRef: string;
+
+  fromData = data => {
+    Object.entries(data).forEach(([key, value]) => (this[key] = value));
+  };
 }

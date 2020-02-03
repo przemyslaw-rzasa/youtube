@@ -5,9 +5,11 @@ import {
   ManyToOne,
   Entity,
   Unique,
-  SaveOptions
+  SaveOptions,
+  OneToMany
 } from "typeorm";
 import { User } from "src/users/user.entity";
+import { Video } from "src/videos/video.entity";
 
 @Entity()
 @Unique(["name"])
@@ -25,6 +27,12 @@ export class Channel extends BaseEntity {
   user: User;
 
   userId: string;
+
+  @OneToMany(
+    type => Video,
+    video => video.channel
+  )
+  videos: Video[];
 
   @Column()
   name: string;
