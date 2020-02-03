@@ -31,22 +31,27 @@ export class UsersController {
   @Post()
   @HttpCode(201)
   @UsePipes(ValidationPipe)
-  createUser(@Body() createUserDto: CreateUserDto) {
+  createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.createUser(createUserDto);
   }
 
   @Put()
   @UsePipes(ValidationPipe)
   @UseGuards(AuthGuard("jwt"))
-  updateUser(@Body() updateUserDto: UpdateUserDto, @GetUser() user) {
+  updateUser(
+    @Body() updateUserDto: UpdateUserDto,
+    @GetUser() user
+  ): Promise<User> {
     return this.usersService.updateUser(updateUserDto, user);
   }
 
   @Delete()
   @HttpCode(204)
   @UseGuards(AuthGuard("jwt"))
-  deleteUser(@Body() deleteUserDto: DeleteUserDto, @GetUser() user) {
-    console.log(deleteUserDto);
+  deleteUser(
+    @Body() deleteUserDto: DeleteUserDto,
+    @GetUser() user
+  ): Promise<void> {
     return this.usersService.deleteUser(deleteUserDto, user);
   }
 }

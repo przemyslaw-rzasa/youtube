@@ -15,6 +15,7 @@ import { GetUser } from "src/auth/get-user.decorator";
 import { AuthGuard } from "@nestjs/passport";
 import { UpdateChannelDto } from "./dto/update-channel.dto";
 import { DeleteChannelDto } from "./dto/delete-channel.dto";
+import { Channel } from "./channel.entity";
 
 @Controller("channels")
 export class ChannelsController {
@@ -24,21 +25,30 @@ export class ChannelsController {
   @HttpCode(201)
   @UseGuards(AuthGuard("jwt"))
   @UsePipes(ValidationPipe)
-  createChannel(@Body() createChannelDto: CreateChannelDto, @GetUser() user) {
+  createChannel(
+    @Body() createChannelDto: CreateChannelDto,
+    @GetUser() user
+  ): Promise<Channel> {
     return this.channelsService.createChannel(createChannelDto, user);
   }
 
   @Put()
   @UseGuards(AuthGuard("jwt"))
   @UsePipes(ValidationPipe)
-  updateChannel(@Body() updateChannelDto: UpdateChannelDto, @GetUser() user) {
+  updateChannel(
+    @Body() updateChannelDto: UpdateChannelDto,
+    @GetUser() user
+  ): Promise<Channel> {
     return this.channelsService.updateChannel(updateChannelDto, user);
   }
 
   @Delete()
   @HttpCode(204)
   @UseGuards(AuthGuard("jwt"))
-  deleteChannel(@Body() deleteChannelDto: DeleteChannelDto, @GetUser() user) {
+  deleteChannel(
+    @Body() deleteChannelDto: DeleteChannelDto,
+    @GetUser() user
+  ): Promise<void> {
     return this.channelsService.deleteChannel(deleteChannelDto, user);
   }
 }

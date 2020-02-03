@@ -18,13 +18,21 @@ export class ChannelsService {
     private channelsRepository: ChannelsRepository
   ) {}
 
-  async createChannel(createChannelDto: CreateChannelDto, user: User) {
+  async createChannel(
+    createChannelDto: CreateChannelDto,
+    user: User
+  ): Promise<Channel> {
     return await this.channelsRepository.createChannel(createChannelDto, user);
   }
 
-  async updateChannel(updateChannelDto: UpdateChannelDto, user: User) {
-    // @todo: Should we do double fetch? (Check repo)
-    const channel = await Channel.findOne({ id: updateChannelDto.id });
+  async updateChannel(
+    updateChannelDto: UpdateChannelDto,
+    user: User
+  ): Promise<Channel> {
+    const channel = await Channel.findOne(
+      { id: updateChannelDto.id },
+      { relations: ["user"] }
+    );
 
     if (!channel) {
       throw new NotFoundException();
@@ -40,8 +48,14 @@ export class ChannelsService {
     return await this.channelsRepository.updateChannel(updateChannelDto);
   }
 
-  async deleteChannel(deleteChannelDto: DeleteChannelDto, user: User) {
-    const channel = await Channel.findOne({ id: deleteChannelDto.id });
+  async deleteChannel(
+    deleteChannelDto: DeleteChannelDto,
+    user: User
+  ): Promise<void> {
+    const channel = await Channel.findOne(
+      { id: deleteChannelDto.id },
+      { relations: ["user"] }
+    );
 
     if (!channel) {
       throw new NotFoundException();

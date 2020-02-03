@@ -12,7 +12,7 @@ export class UsersService {
     @InjectRepository(UserRepository) private userRepository: UserRepository
   ) {}
 
-  async createUser(createUserDto: CreateUserDto) {
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
     return await this.userRepository.createUser(createUserDto);
   }
 
@@ -34,7 +34,7 @@ export class UsersService {
     return await this.userRepository.updateUser(newUserData);
   }
 
-  async deleteUser(deleteUserDto: DeleteUserDto, user: User) {
+  async deleteUser(deleteUserDto: DeleteUserDto, user: User): Promise<void> {
     const deletesForeignUser = deleteUserDto.id && deleteUserDto.id !== user.id;
     const isAdmin = user.role === Role.ADMIN;
 
@@ -49,7 +49,7 @@ export class UsersService {
     return await this.userRepository.deleteUser(id);
   }
 
-  async findOne(...data) {
+  async findOne(...data): Promise<User> {
     return this.userRepository.findOne(...data);
   }
 }

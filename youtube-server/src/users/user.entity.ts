@@ -5,7 +5,8 @@ import {
   Column,
   BaseEntity,
   Unique,
-  OneToMany
+  OneToMany,
+  SaveOptions
 } from "typeorm";
 import { Channel } from "src/channels/channel.entity";
 
@@ -13,6 +14,15 @@ export enum Role {
   ADMIN = "admin",
   USER = "user"
 }
+
+interface AdditionalSaveOptions {
+  customOptions?: {
+    passwordChanged?: boolean;
+    isNew?: boolean;
+  };
+}
+
+type SaveUserOptions = SaveOptions & AdditionalSaveOptions;
 
 @Entity()
 @Unique(["email"])
@@ -23,11 +33,9 @@ export class User extends BaseEntity {
   @Column()
   email: string;
 
-  // @todo: Prevent return within Channel, when "eager" turned on
   @Column()
   salt: string;
 
-  // @todo: Prevent return within Channel, when "eager" turned on
   @Column()
   password: string;
 
@@ -60,23 +68,21 @@ export class User extends BaseEntity {
     this.password = await bcrypt.hash(this.password, this.salt);
   };
 
-  create = async () => {
-    await this.hashPassword();
+  save = async ({
+    customOptions,
+    ...saveOptions
+  }: SaveUserOptions = {}): Promise<this> => {
+    const { isNew, passwordChanged } = customOptions || {};
 
-    await this.save();
-
-    delete this.password;
-    delete this.salt;
-  };
-
-  update = async ({ passwordChanged }) => {
-    if (passwordChanged) {
-      this.hashPassword();
+    if (isNew || passwordChanged) {
+      await this.hashPassword();
     }
 
-    await this.save();
+    await super.save(saveOptions);
 
     delete this.password;
     delete this.salt;
+
+    return this;
   };
 }

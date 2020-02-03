@@ -19,7 +19,11 @@ export class UserRepository extends Repository<User> {
     user.fromData(createUserDto);
 
     try {
-      await user.create();
+      await user.save({
+        customOptions: {
+          isNew: true
+        }
+      });
     } catch (error) {
       if (error.code === ERROR_CODES.CONFLICT) {
         throw new ConflictException("User with this email already exists");
@@ -41,8 +45,11 @@ export class UserRepository extends Repository<User> {
     user.fromData(userData);
 
     try {
-      await user.update({
-        passwordChanged: !!userData.password
+      await user.save({
+        customOptions: {
+          isNew: false,
+          passwordChanged: !!userData.password
+        }
       });
 
       return user;

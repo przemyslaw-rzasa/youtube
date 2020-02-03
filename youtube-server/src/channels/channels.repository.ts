@@ -12,18 +12,22 @@ import { DeleteChannelDto } from "./dto/delete-channel.dto";
 
 @EntityRepository(Channel)
 export class ChannelsRepository extends Repository<Channel> {
-  async createChannel(createChannelDto: CreateChannelDto, user: User) {
+  async createChannel(
+    createChannelDto: CreateChannelDto,
+    user: User
+  ): Promise<Channel> {
     const channel = new Channel();
 
     const payload = {
       ...createChannelDto,
-      user: user.id
+      user: user.id,
+      userId: user.id
     };
 
     channel.fromData(payload);
 
     try {
-      await channel.create();
+      await channel.save();
 
       return channel;
     } catch (error) {
@@ -35,12 +39,12 @@ export class ChannelsRepository extends Repository<Channel> {
     }
   }
 
-  async updateChannel(updateChannelDto: UpdateChannelDto) {
+  async updateChannel(updateChannelDto: UpdateChannelDto): Promise<Channel> {
     const channel = await Channel.findOne({ id: updateChannelDto.id });
 
     channel.fromData(updateChannelDto);
     try {
-      await channel.update();
+      await channel.save();
 
       return channel;
     } catch (error) {
@@ -52,9 +56,9 @@ export class ChannelsRepository extends Repository<Channel> {
     }
   }
 
-  async deleteChannel({ id }: DeleteChannelDto) {
+  async deleteChannel({ id }: DeleteChannelDto): Promise<void> {
     const channel = await Channel.findOne({ id });
 
-    return await channel.remove();
+    await channel.remove();
   }
 }
