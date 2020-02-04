@@ -12,7 +12,7 @@ import { join } from "path";
 import { FilesModule } from "./files/files.module";
 import { MulterModule } from "@nestjs/platform-express";
 
-const publicPath = join(process.cwd(), "public");
+export const publicPath = join(process.cwd(), "public");
 
 @Module({
   imports: [

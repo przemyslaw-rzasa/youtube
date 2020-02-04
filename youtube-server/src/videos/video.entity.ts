@@ -3,9 +3,12 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToOne
+  ManyToOne,
+  OneToOne,
+  JoinColumn
 } from "typeorm";
 import { Channel } from "src/channels/channel.entity";
+import { File } from "src/files/file.entity";
 
 @Entity()
 export class Video extends BaseEntity {
@@ -21,14 +24,22 @@ export class Video extends BaseEntity {
   )
   channel: Channel;
 
+  @OneToOne(
+    type => File,
+    file => file,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "RESTRICT"
+    }
+  )
+  @JoinColumn()
+  videoFile: File;
+
   @Column()
   name: string;
 
   @Column()
   description: string;
-
-  @Column()
-  videoRef: string;
 
   fromData = data => {
     Object.entries(data).forEach(([key, value]) => (this[key] = value));

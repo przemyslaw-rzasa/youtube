@@ -24,7 +24,7 @@ export class ChannelsController {
   @Post()
   @HttpCode(201)
   @UseGuards(AuthGuard("jwt"))
-  @UsePipes(ValidationPipe)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   createChannel(
     @Body() createChannelDto: CreateChannelDto,
     @GetUser() user
@@ -34,7 +34,7 @@ export class ChannelsController {
 
   @Put()
   @UseGuards(AuthGuard("jwt"))
-  @UsePipes(ValidationPipe)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   updateChannel(
     @Body() updateChannelDto: UpdateChannelDto,
     @GetUser() user

@@ -6,9 +6,18 @@ import {
   Controller,
   Post,
   UploadedFile,
-  UseInterceptors
+  UseInterceptors,
+  UseGuards,
+  BadRequestException
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { FilesService } from "./files.service";
+import { PUBLIC_PATH } from "src/constants";
+import { FileDto } from "./dto/file.dto";
+import { FileType, FileHost } from "./file.entity";
+import { AuthGuard } from "@nestjs/passport";
+import { GetUser } from "src/auth/get-user.decorator";
+import { User } from "src/users/user.entity";
 
 const editFileName = (req, file, callback) => {
   const arrayOriginalName = file.originalname.split(".");
@@ -36,37 +45,67 @@ const videoFileFilter = (req, file, callback) => {
 
 @Controller("files")
 export class FilesController {
+  constructor(private filesService: FilesService) {}
+
   @Post("/image")
+  @UseGuards(AuthGuard("jwt"))
   @UseInterceptors(
     FileInterceptor("data", {
       fileFilter: imageFileFilter,
       storage: diskStorage({
-        destination: join(process.cwd(), "public", "images"),
+        destination: join(PUBLIC_PATH, "images"),
         filename: editFileName
       })
     })
   )
-  uploadImage(@UploadedFile() file) {
-    return {
-      originalname: file.originalname,
-      filename: file.filename
+  async uploadImage(@UploadedFile() file, @GetUser() user: User) {
+    if (!file) {
+      throw new BadRequestException("File not provided");
+    }
+
+    const { originalname, filename, size } = file;
+
+    const fileDto: FileDto = {
+      originalname,
+      filename,
+      size,
+      type: FileType.IMAGE,
+      host: FileHost.LOCAL
     };
+
+    const fileData = await this.filesService.saveFileData(fileDto, user);
+
+    return fileData;
   }
 
   @Post("/video")
+  @UseGuards(AuthGuard("jwt"))
   @UseInterceptors(
     FileInterceptor("data", {
       fileFilter: videoFileFilter,
       storage: diskStorage({
-        destination: join(process.cwd(), "public", "videos"),
+        destination: join(PUBLIC_PATH, "videos"),
         filename: editFileName
       })
     })
   )
-  uploadVideo(@UploadedFile() file) {
-    return {
-      originalname: file.originalname,
-      filename: file.filename
+  async uploadVideo(@UploadedFile() file, @GetUser() user: User) {
+    if (!file) {
+      throw new BadRequestException("File not provided");
+    }
+
+    const { originalname, filename, size } = file;
+
+    const fileDto: FileDto = {
+      originalname,
+      filename,
+      size,
+      type: FileType.VIDEO,
+      host: FileHost.LOCAL
     };
+
+    const fileData = await this.filesService.saveFileData(fileDto, user);
+
+    return fileData;
   }
 }

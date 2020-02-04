@@ -30,13 +30,14 @@ export class UsersController {
 
   @Post()
   @HttpCode(201)
-  @UsePipes(ValidationPipe)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
+    console.log(createUserDto);
     return this.usersService.createUser(createUserDto);
   }
 
   @Put()
-  @UsePipes(ValidationPipe)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   @UseGuards(AuthGuard("jwt"))
   updateUser(
     @Body() updateUserDto: UpdateUserDto,

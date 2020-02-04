@@ -8,7 +8,9 @@ import {
   OneToMany,
   SaveOptions
 } from "typeorm";
+import { classToPlain, Exclude } from "class-transformer";
 import { Channel } from "src/channels/channel.entity";
+import { File } from "src/files/file.entity";
 
 export enum Role {
   ADMIN = "admin",
@@ -34,9 +36,11 @@ export class User extends BaseEntity {
   email: string;
 
   @Column()
+  @Exclude({ toPlainOnly: true })
   salt: string;
 
   @Column()
+  @Exclude({ toPlainOnly: true })
   password: string;
 
   @Column({
@@ -51,6 +55,12 @@ export class User extends BaseEntity {
     channel => channel.user
   )
   channels: Channel[];
+
+  @OneToMany(
+    type => File,
+    file => file.user
+  )
+  files: File[];
 
   fromData = data => {
     Object.entries(data).forEach(([key, value]) => (this[key] = value));
