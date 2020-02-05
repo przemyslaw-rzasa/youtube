@@ -5,6 +5,7 @@ import { UserRepository } from "./users.repository";
 import { User, Role } from "./user.entity";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { DeleteUserDto } from "./dto/delete-user.dto";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @Injectable()
 export class UsersService {
@@ -12,17 +13,21 @@ export class UsersService {
     @InjectRepository(UserRepository) private userRepository: UserRepository
   ) {}
 
-  async getUser(user: User): Promise<User> {
-    return await this.userRepository.getUser(user);
+  async getUser(userTokenData: UserTokenDataDto): Promise<User> {
+    return await this.userRepository.getUser(userTokenData);
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     return await this.userRepository.createUser(createUserDto);
   }
 
-  async updateUser(updateUserDto: UpdateUserDto, user: User) {
-    const updatesForeignUser = updateUserDto.id && updateUserDto.id !== user.id;
-    const isAdmin = user.role === Role.ADMIN;
+  async updateUser(
+    updateUserDto: UpdateUserDto,
+    userTokenData: UserTokenDataDto
+  ) {
+    const updatesForeignUser =
+      updateUserDto.id && updateUserDto.id !== userTokenData.id;
+    const isAdmin = userTokenData.role === Role.ADMIN;
 
     if (updatesForeignUser) {
       if (!isAdmin) {
@@ -31,16 +36,20 @@ export class UsersService {
     }
 
     const newUserData = {
-      id: updatesForeignUser ? updateUserDto.id : user.id,
+      id: updatesForeignUser ? updateUserDto.id : userTokenData.id,
       ...updateUserDto
     };
 
     return await this.userRepository.updateUser(newUserData);
   }
 
-  async deleteUser(deleteUserDto: DeleteUserDto, user: User): Promise<void> {
-    const deletesForeignUser = deleteUserDto.id && deleteUserDto.id !== user.id;
-    const isAdmin = user.role === Role.ADMIN;
+  async deleteUser(
+    deleteUserDto: DeleteUserDto,
+    userTokenData: UserTokenDataDto
+  ): Promise<void> {
+    const deletesForeignUser =
+      deleteUserDto.id && deleteUserDto.id !== userTokenData.id;
+    const isAdmin = userTokenData.role === Role.ADMIN;
 
     if (deletesForeignUser) {
       if (!isAdmin) {
@@ -48,7 +57,7 @@ export class UsersService {
       }
     }
 
-    const id = deletesForeignUser ? deleteUserDto.id : user.id;
+    const id = deletesForeignUser ? deleteUserDto.id : userTokenData.id;
 
     return await this.userRepository.deleteUser(id);
   }

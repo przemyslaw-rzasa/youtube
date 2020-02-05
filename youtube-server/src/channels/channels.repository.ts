@@ -10,6 +10,7 @@ import { ERROR_CODES } from "src/constants/typeOrm";
 import { UpdateChannelDto } from "./dto/update-channel.dto";
 import { DeleteChannelDto } from "./dto/delete-channel.dto";
 import { GetChannelDto } from "./dto/get-channel.dto";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @EntityRepository(Channel)
 export class ChannelsRepository extends Repository<Channel> {
@@ -19,14 +20,14 @@ export class ChannelsRepository extends Repository<Channel> {
 
   async createChannel(
     createChannelDto: CreateChannelDto,
-    user: User
+    userTokenData: UserTokenDataDto
   ): Promise<Channel> {
     const channel = new Channel();
 
     const payload = {
       ...createChannelDto,
-      user: user.id,
-      userId: user.id
+      user: userTokenData.id,
+      userId: userTokenData.id
     };
 
     channel.fromData(payload);

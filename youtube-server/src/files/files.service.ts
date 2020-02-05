@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { FileDto } from "./dto/file.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { FilesRepository } from "./files.repository";
-import { User } from "src/users/user.entity";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @Injectable()
 export class FilesService {
@@ -10,11 +10,7 @@ export class FilesService {
     @InjectRepository(FilesRepository) private filesRepository: FilesRepository
   ) {}
 
-  async saveFileData(fileDto: FileDto, user: User) {
-    return await this.filesRepository.saveFileData(fileDto, user);
-  }
-
-  async injectRelatedVideoId(videoId: number, fileId: number) {
-    return await this.filesRepository.injectRelatedVideoId(videoId, fileId);
+  async saveFileData(fileDto: FileDto, userTokenData: UserTokenDataDto) {
+    return await this.filesRepository.saveFileData(fileDto, userTokenData);
   }
 }

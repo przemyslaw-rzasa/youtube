@@ -15,6 +15,8 @@ import { publicPath } from "src/app.module";
 import { GetVideoDto } from "./dto/get-video.dto";
 import { UpdateVideoDto } from "./dto/update-video.dto";
 import { Video } from "./video.entity";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+import { DeleteVideoDto } from "./dto/delete-video.dto";
 
 @Injectable()
 export class VideosService {
@@ -22,14 +24,17 @@ export class VideosService {
     @InjectRepository(VideoRepository) private videoRepository: VideoRepository
   ) {}
 
-  async getVideo(getVideoDto: GetVideoDto, user: User) {
+  async getVideo(getVideoDto: GetVideoDto) {
     return await this.videoRepository.getVideo(getVideoDto);
   }
 
-  async createVideo(createVideoDto: CreateVideoDto, user: User) {
+  async createVideo(
+    createVideoDto: CreateVideoDto,
+    userTokenData: UserTokenDataDto
+  ) {
     const { channelId, fileVideoId } = createVideoDto;
 
-    const isAdmin = user.role === Role.ADMIN;
+    const isAdmin = userTokenData.role === Role.ADMIN;
 
     // Check if channel exists
     const channel = await Channel.findOne(
@@ -44,7 +49,7 @@ export class VideosService {
     }
 
     // Check user rights to channel
-    if (!isAdmin && user.id !== channel.user.id) {
+    if (!isAdmin && userTokenData.id !== channel.user.id) {
       throw new MethodNotAllowedException();
     }
 
@@ -59,7 +64,7 @@ export class VideosService {
     }
 
     // Check user rights to channel
-    if (!isAdmin && user.id !== videoData.user.id) {
+    if (!isAdmin && userTokenData.id !== videoData.user.id) {
       throw new MethodNotAllowedException();
     }
 
@@ -86,7 +91,7 @@ export class VideosService {
     if (fileExists) {
       const video = await this.videoRepository.createVideo(
         createVideoDto,
-        user
+        userTokenData
       );
 
       return video;
@@ -95,10 +100,13 @@ export class VideosService {
     }
   }
 
-  async updateVideo(updateVideoDto: UpdateVideoDto, user: User) {
+  async updateVideo(
+    updateVideoDto: UpdateVideoDto,
+    userTokenData: UserTokenDataDto
+  ) {
     const { id } = updateVideoDto;
 
-    const isAdmin = user.role === Role.ADMIN;
+    const isAdmin = userTokenData.role === Role.ADMIN;
 
     const video = await Video.findOne({ id }, { relations: ["user"] });
 
@@ -107,12 +115,34 @@ export class VideosService {
     }
 
     // Check user rights to channel
-    if (!isAdmin && user.id !== video.user.id) {
+    if (!isAdmin && userTokenData.id !== video.user.id) {
       throw new MethodNotAllowedException();
     }
 
     const newVideo = await this.videoRepository.updateVideo(updateVideoDto);
 
     return newVideo;
+  }
+
+  async deleteVideo(
+    deleteVideoDto: DeleteVideoDto,
+    userTokenData: UserTokenDataDto
+  ): Promise<void> {
+    const { id } = deleteVideoDto;
+
+    const isAdmin = userTokenData.role === Role.ADMIN;
+
+    const video = await Video.findOne({ id }, { relations: ["user"] });
+
+    if (!video) {
+      throw new NotFoundException("Video not found");
+    }
+
+    // Check user rights to channel
+    if (!isAdmin && userTokenData.id !== video.user.id) {
+      throw new MethodNotAllowedException();
+    }
+
+    await this.videoRepository.deleteVideo(deleteVideoDto);
   }
 }

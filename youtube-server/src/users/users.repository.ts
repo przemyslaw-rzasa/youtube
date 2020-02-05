@@ -1,5 +1,4 @@
 import { EntityRepository, Repository } from "typeorm";
-import * as bcrypt from "bcryptjs";
 import {
   ConflictException,
   InternalServerErrorException,
@@ -10,10 +9,11 @@ import { User } from "./user.entity";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ERROR_CODES } from "src/constants/typeOrm";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  async getUser(userTokenData: User): Promise<User> {
+  async getUser(userTokenData: UserTokenDataDto): Promise<User> {
     const user = await User.findOne({ id: userTokenData.id });
 
     if (!user) {

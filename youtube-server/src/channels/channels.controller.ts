@@ -18,6 +18,7 @@ import { UpdateChannelDto } from "./dto/update-channel.dto";
 import { DeleteChannelDto } from "./dto/delete-channel.dto";
 import { Channel } from "./channel.entity";
 import { GetChannelDto } from "./dto/get-channel.dto";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @Controller("channels")
 export class ChannelsController {
@@ -37,9 +38,9 @@ export class ChannelsController {
   @UsePipes(new ValidationPipe({ whitelist: true }))
   createChannel(
     @Body() createChannelDto: CreateChannelDto,
-    @GetUser() user
+    @GetUser() userTokenData: UserTokenDataDto
   ): Promise<Channel> {
-    return this.channelsService.createChannel(createChannelDto, user);
+    return this.channelsService.createChannel(createChannelDto, userTokenData);
   }
 
   @Put()
@@ -47,9 +48,9 @@ export class ChannelsController {
   @UsePipes(new ValidationPipe({ whitelist: true }))
   updateChannel(
     @Body() updateChannelDto: UpdateChannelDto,
-    @GetUser() user
+    @GetUser() userTokenData: UserTokenDataDto
   ): Promise<Channel> {
-    return this.channelsService.updateChannel(updateChannelDto, user);
+    return this.channelsService.updateChannel(updateChannelDto, userTokenData);
   }
 
   @Delete()
@@ -57,8 +58,8 @@ export class ChannelsController {
   @UseGuards(AuthGuard("jwt"))
   deleteChannel(
     @Body() deleteChannelDto: DeleteChannelDto,
-    @GetUser() user
+    @GetUser() userTokenData: UserTokenDataDto
   ): Promise<void> {
-    return this.channelsService.deleteChannel(deleteChannelDto, user);
+    return this.channelsService.deleteChannel(deleteChannelDto, userTokenData);
   }
 }

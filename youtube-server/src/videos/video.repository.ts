@@ -4,7 +4,8 @@ import { CreateVideoDto } from "./dto/create-video.dto";
 import { GetVideoDto } from "./dto/get-video.dto";
 import { File } from "src/files/file.entity";
 import { UpdateVideoDto } from "./dto/update-video.dto";
-import { User } from "src/users/user.entity";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+import { DeleteVideoDto } from "./dto/delete-video.dto";
 
 @EntityRepository(Video)
 export class VideoRepository extends Repository<Video> {
@@ -19,7 +20,7 @@ export class VideoRepository extends Repository<Video> {
 
   async createVideo(
     { title, description, fileVideoId, channelId }: CreateVideoDto,
-    user: User
+    userTokenData: UserTokenDataDto
   ) {
     const video = new Video();
 
@@ -28,7 +29,7 @@ export class VideoRepository extends Repository<Video> {
       description,
       videoFile: fileVideoId,
       channel: channelId,
-      user: user.id
+      user: userTokenData.id
     };
 
     video.fromData(payload);
@@ -55,5 +56,11 @@ export class VideoRepository extends Repository<Video> {
     await video.save();
 
     return video;
+  }
+
+  async deleteVideo({ id }: DeleteVideoDto) {
+    const video = await Video.findOne({ id });
+
+    return await video.remove();
   }
 }

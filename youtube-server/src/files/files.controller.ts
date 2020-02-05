@@ -18,6 +18,7 @@ import { FileType, FileHost } from "./file.entity";
 import { AuthGuard } from "@nestjs/passport";
 import { GetUser } from "src/auth/get-user.decorator";
 import { User } from "src/users/user.entity";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 const editFileName = (req, file, callback) => {
   const arrayOriginalName = file.originalname.split(".");
@@ -58,7 +59,10 @@ export class FilesController {
       })
     })
   )
-  async uploadImage(@UploadedFile() file, @GetUser() user: User) {
+  async uploadImage(
+    @UploadedFile() file,
+    @GetUser() userTokenData: UserTokenDataDto
+  ) {
     if (!file) {
       throw new BadRequestException("File not provided");
     }
@@ -73,7 +77,10 @@ export class FilesController {
       host: FileHost.LOCAL
     };
 
-    const fileData = await this.filesService.saveFileData(fileDto, user);
+    const fileData = await this.filesService.saveFileData(
+      fileDto,
+      userTokenData
+    );
 
     return fileData;
   }
@@ -89,7 +96,10 @@ export class FilesController {
       })
     })
   )
-  async uploadVideo(@UploadedFile() file, @GetUser() user: User) {
+  async uploadVideo(
+    @UploadedFile() file,
+    @GetUser() userTokenData: UserTokenDataDto
+  ) {
     if (!file) {
       throw new BadRequestException("File not provided");
     }
@@ -104,7 +114,10 @@ export class FilesController {
       host: FileHost.LOCAL
     };
 
-    const fileData = await this.filesService.saveFileData(fileDto, user);
+    const fileData = await this.filesService.saveFileData(
+      fileDto,
+      userTokenData
+    );
 
     return fileData;
   }

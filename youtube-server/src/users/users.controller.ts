@@ -17,6 +17,7 @@ import { GetUser } from "src/auth/get-user.decorator";
 import { User } from "./user.entity";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { DeleteUserDto } from "./dto/delete-user.dto";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @Controller("users")
 export class UsersController {
@@ -24,8 +25,8 @@ export class UsersController {
 
   @Get()
   @UseGuards(AuthGuard("jwt"))
-  getUser(@GetUser() user: User) {
-    return this.usersService.getUser(user);
+  getUser(@GetUser() userTokenData: UserTokenDataDto) {
+    return this.usersService.getUser(userTokenData);
   }
 
   @Post()
@@ -41,9 +42,9 @@ export class UsersController {
   @UseGuards(AuthGuard("jwt"))
   updateUser(
     @Body() updateUserDto: UpdateUserDto,
-    @GetUser() user
+    @GetUser() userTokenData: UserTokenDataDto
   ): Promise<User> {
-    return this.usersService.updateUser(updateUserDto, user);
+    return this.usersService.updateUser(updateUserDto, userTokenData);
   }
 
   @Delete()
@@ -51,8 +52,8 @@ export class UsersController {
   @UseGuards(AuthGuard("jwt"))
   deleteUser(
     @Body() deleteUserDto: DeleteUserDto,
-    @GetUser() user
+    @GetUser() userTokenData: UserTokenDataDto
   ): Promise<void> {
-    return this.usersService.deleteUser(deleteUserDto, user);
+    return this.usersService.deleteUser(deleteUserDto, userTokenData);
   }
 }

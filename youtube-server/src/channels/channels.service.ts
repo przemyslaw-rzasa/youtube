@@ -11,6 +11,7 @@ import { UpdateChannelDto } from "./dto/update-channel.dto";
 import { Channel } from "./channel.entity";
 import { DeleteChannelDto } from "./dto/delete-channel.dto";
 import { GetChannelDto } from "./dto/get-channel.dto";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @Injectable()
 export class ChannelsService {
@@ -25,14 +26,17 @@ export class ChannelsService {
 
   async createChannel(
     createChannelDto: CreateChannelDto,
-    user: User
+    userTokenData: UserTokenDataDto
   ): Promise<Channel> {
-    return await this.channelsRepository.createChannel(createChannelDto, user);
+    return await this.channelsRepository.createChannel(
+      createChannelDto,
+      userTokenData
+    );
   }
 
   async updateChannel(
     updateChannelDto: UpdateChannelDto,
-    user: User
+    userTokenData: UserTokenDataDto
   ): Promise<Channel> {
     const channel = await Channel.findOne(
       { id: updateChannelDto.id },
@@ -43,8 +47,8 @@ export class ChannelsService {
       throw new NotFoundException();
     }
 
-    const updatesOwnChannel = user.id === channel.user.id;
-    const isAdmin = user.role === Role.ADMIN;
+    const updatesOwnChannel = userTokenData.id === channel.user.id;
+    const isAdmin = userTokenData.role === Role.ADMIN;
 
     if (!updatesOwnChannel && !isAdmin) {
       throw new MethodNotAllowedException();
@@ -55,7 +59,7 @@ export class ChannelsService {
 
   async deleteChannel(
     deleteChannelDto: DeleteChannelDto,
-    user: User
+    userTokenData: UserTokenDataDto
   ): Promise<void> {
     const channel = await Channel.findOne(
       { id: deleteChannelDto.id },
@@ -66,8 +70,8 @@ export class ChannelsService {
       throw new NotFoundException();
     }
 
-    const updatesOwnChannel = user.id === channel.user.id;
-    const isAdmin = user.role === Role.ADMIN;
+    const updatesOwnChannel = userTokenData.id === channel.user.id;
+    const isAdmin = userTokenData.role === Role.ADMIN;
 
     if (!updatesOwnChannel && !isAdmin) {
       throw new MethodNotAllowedException();

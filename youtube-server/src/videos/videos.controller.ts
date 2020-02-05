@@ -7,7 +7,8 @@ import {
   ValidationPipe,
   UseGuards,
   Get,
-  Put
+  Put,
+  Delete
 } from "@nestjs/common";
 import { VideosService } from "./videos.service";
 import { GetUser } from "src/auth/get-user.decorator";
@@ -15,6 +16,8 @@ import { AuthGuard } from "@nestjs/passport";
 import { CreateVideoDto } from "./dto/create-video.dto";
 import { GetVideoDto } from "./dto/get-video.dto";
 import { UpdateVideoDto } from "./dto/update-video.dto";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+import { DeleteVideoDto } from "./dto/delete-video.dto";
 
 @Controller("videos")
 export class VideosController {
@@ -24,22 +27,39 @@ export class VideosController {
   @HttpCode(200)
   @UseGuards(AuthGuard("jwt"))
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  getVideo(@Body() getVideoDto: GetVideoDto, @GetUser() user): any {
-    return this.videoService.getVideo(getVideoDto, user);
+  getVideo(@Body() getVideoDto: GetVideoDto): any {
+    return this.videoService.getVideo(getVideoDto);
   }
 
   @Post()
   @HttpCode(201)
   @UseGuards(AuthGuard("jwt"))
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  createVideo(@Body() createVideoDto: CreateVideoDto, @GetUser() user): any {
-    return this.videoService.createVideo(createVideoDto, user);
+  createVideo(
+    @Body() createVideoDto: CreateVideoDto,
+    @GetUser() userTokenData: UserTokenDataDto
+  ): any {
+    return this.videoService.createVideo(createVideoDto, userTokenData);
   }
 
   @Put()
   @UseGuards(AuthGuard("jwt"))
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  updateVideo(@Body() updateVideoDto: UpdateVideoDto, @GetUser() user): any {
-    return this.videoService.updateVideo(updateVideoDto, user);
+  updateVideo(
+    @Body() updateVideoDto: UpdateVideoDto,
+    @GetUser() userTokenData: UserTokenDataDto
+  ): any {
+    return this.videoService.updateVideo(updateVideoDto, userTokenData);
+  }
+
+  @Delete()
+  @HttpCode(204)
+  @UseGuards(AuthGuard("jwt"))
+  @UsePipes(new ValidationPipe({ whitelist: true }))
+  deleteVideo(
+    @Body() deleteVideoDto: DeleteVideoDto,
+    @GetUser() userTokenData: UserTokenDataDto
+  ): Promise<void> {
+    return this.videoService.deleteVideo(deleteVideoDto, userTokenData);
   }
 }
