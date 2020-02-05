@@ -11,6 +11,7 @@ import {
 import { classToPlain, Exclude } from "class-transformer";
 import { Channel } from "src/channels/channel.entity";
 import { File } from "src/files/file.entity";
+import { Video } from "src/videos/video.entity";
 
 export enum Role {
   ADMIN = "admin",
@@ -55,6 +56,12 @@ export class User extends BaseEntity {
     channel => channel.user
   )
   channels: Channel[];
+
+  @OneToMany(
+    type => Video,
+    video => video.user
+  )
+  videos: Video[];
 
   @OneToMany(
     type => File,

@@ -25,7 +25,7 @@ export class UsersController {
   @Get()
   @UseGuards(AuthGuard("jwt"))
   getUser(@GetUser() user: User) {
-    return user;
+    return this.usersService.getUser(user);
   }
 
   @Post()

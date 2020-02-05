@@ -13,6 +13,15 @@ import { ERROR_CODES } from "src/constants/typeOrm";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
+  async getUser(userTokenData: User): Promise<User> {
+    const user = await User.findOne({ id: userTokenData.id });
+
+    if (!user) {
+      throw new NotFoundException("User does not exists");
+    }
+
+    return user;
+  }
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
 

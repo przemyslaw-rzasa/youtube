@@ -6,13 +6,15 @@ import {
   UsePipes,
   ValidationPipe,
   UseGuards,
-  Get
+  Get,
+  Put
 } from "@nestjs/common";
 import { VideosService } from "./videos.service";
 import { GetUser } from "src/auth/get-user.decorator";
 import { AuthGuard } from "@nestjs/passport";
 import { CreateVideoDto } from "./dto/create-video.dto";
 import { GetVideoDto } from "./dto/get-video.dto";
+import { UpdateVideoDto } from "./dto/update-video.dto";
 
 @Controller("videos")
 export class VideosController {
@@ -32,5 +34,12 @@ export class VideosController {
   @UsePipes(new ValidationPipe({ whitelist: true }))
   createVideo(@Body() createVideoDto: CreateVideoDto, @GetUser() user): any {
     return this.videoService.createVideo(createVideoDto, user);
+  }
+
+  @Put()
+  @UseGuards(AuthGuard("jwt"))
+  @UsePipes(new ValidationPipe({ whitelist: true }))
+  updateVideo(@Body() updateVideoDto: UpdateVideoDto, @GetUser() user): any {
+    return this.videoService.updateVideo(updateVideoDto, user);
   }
 }

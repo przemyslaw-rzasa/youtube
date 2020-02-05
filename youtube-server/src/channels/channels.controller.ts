@@ -7,7 +7,8 @@ import {
   ValidationPipe,
   Put,
   Delete,
-  HttpCode
+  HttpCode,
+  Get
 } from "@nestjs/common";
 import { CreateChannelDto } from "./dto/create-channel.dto";
 import { ChannelsService } from "./channels.service";
@@ -16,10 +17,19 @@ import { AuthGuard } from "@nestjs/passport";
 import { UpdateChannelDto } from "./dto/update-channel.dto";
 import { DeleteChannelDto } from "./dto/delete-channel.dto";
 import { Channel } from "./channel.entity";
+import { GetChannelDto } from "./dto/get-channel.dto";
 
 @Controller("channels")
 export class ChannelsController {
   constructor(private channelsService: ChannelsService) {}
+
+  @Get()
+  @HttpCode(201)
+  @UseGuards(AuthGuard("jwt"))
+  @UsePipes(new ValidationPipe({ whitelist: true }))
+  getChannel(@Body() getChannelDto: GetChannelDto): Promise<Channel> {
+    return this.channelsService.getChannel(getChannelDto);
+  }
 
   @Post()
   @HttpCode(201)

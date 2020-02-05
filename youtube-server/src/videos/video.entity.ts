@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { Channel } from "src/channels/channel.entity";
 import { File } from "src/files/file.entity";
+import { User } from "src/users/user.entity";
 
 @Entity()
 export class Video extends BaseEntity {
@@ -24,19 +25,27 @@ export class Video extends BaseEntity {
   )
   channel: Channel;
 
+  @ManyToOne(
+    type => User,
+    user => user.videos,
+    {
+      onDelete: "CASCADE"
+    }
+  )
+  user: User;
+
   @OneToOne(
     type => File,
-    file => file,
+    file => file.video,
     {
-      onDelete: "CASCADE",
-      onUpdate: "RESTRICT"
+      onDelete: "CASCADE"
     }
   )
   @JoinColumn()
   videoFile: File;
 
   @Column()
-  name: string;
+  title: string;
 
   @Column()
   description: string;

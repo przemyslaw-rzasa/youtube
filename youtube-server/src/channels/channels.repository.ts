@@ -9,9 +9,14 @@ import {
 import { ERROR_CODES } from "src/constants/typeOrm";
 import { UpdateChannelDto } from "./dto/update-channel.dto";
 import { DeleteChannelDto } from "./dto/delete-channel.dto";
+import { GetChannelDto } from "./dto/get-channel.dto";
 
 @EntityRepository(Channel)
 export class ChannelsRepository extends Repository<Channel> {
+  async getChannel({ id }: GetChannelDto): Promise<Channel> {
+    return await this.findOne({ id }, { relations: ["videos"] });
+  }
+
   async createChannel(
     createChannelDto: CreateChannelDto,
     user: User

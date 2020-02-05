@@ -59,8 +59,7 @@ export class File extends BaseEntity {
     type => Video,
     video => video.videoFile,
     {
-      onDelete: "CASCADE",
-      nullable: true
+      onDelete: "CASCADE"
     }
   )
   @JoinColumn()

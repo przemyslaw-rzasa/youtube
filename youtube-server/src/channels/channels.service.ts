@@ -10,6 +10,7 @@ import { ChannelsRepository } from "./channels.repository";
 import { UpdateChannelDto } from "./dto/update-channel.dto";
 import { Channel } from "./channel.entity";
 import { DeleteChannelDto } from "./dto/delete-channel.dto";
+import { GetChannelDto } from "./dto/get-channel.dto";
 
 @Injectable()
 export class ChannelsService {
@@ -17,6 +18,10 @@ export class ChannelsService {
     @InjectRepository(ChannelsRepository)
     private channelsRepository: ChannelsRepository
   ) {}
+
+  async getChannel(getChannelDto: GetChannelDto): Promise<Channel> {
+    return await await this.channelsRepository.getChannel(getChannelDto);
+  }
 
   async createChannel(
     createChannelDto: CreateChannelDto,

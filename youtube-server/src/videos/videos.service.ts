@@ -13,6 +13,8 @@ import { VideoRepository } from "./video.repository";
 import { File, FileHost } from "src/files/file.entity";
 import { publicPath } from "src/app.module";
 import { GetVideoDto } from "./dto/get-video.dto";
+import { UpdateVideoDto } from "./dto/update-video.dto";
+import { Video } from "./video.entity";
 
 @Injectable()
 export class VideosService {
@@ -62,20 +64,55 @@ export class VideosService {
     }
 
     // Check if file exists
-    if (videoData.host === FileHost.LOCAL) {
-      fs.access(
-        join(publicPath, "videos", videoData.filename),
-        fs.constants.F_OK,
-        async err => {
-          if (err) {
-            throw new NotFoundException("Video file not found");
-          }
+    const doesFileExists = () =>
+      new Promise((resolve, reject) => {
+        if (videoData.host === FileHost.LOCAL) {
+          fs.access(
+            join(publicPath, "videos", videoData.filename),
+            fs.constants.F_OK,
+            async err => {
+              if (err) {
+                resolve(false);
+              }
 
-          console.log("to video rep");
-
-          return await this.videoRepository.createVideo(createVideoDto);
+              return resolve(true);
+            }
+          );
         }
+      });
+
+    const fileExists = await doesFileExists();
+
+    if (fileExists) {
+      const video = await this.videoRepository.createVideo(
+        createVideoDto,
+        user
       );
+
+      return video;
+    } else {
+      throw new NotFoundException("Video file not found");
     }
+  }
+
+  async updateVideo(updateVideoDto: UpdateVideoDto, user: User) {
+    const { id } = updateVideoDto;
+
+    const isAdmin = user.role === Role.ADMIN;
+
+    const video = await Video.findOne({ id }, { relations: ["user"] });
+
+    if (!video) {
+      throw new NotFoundException("Video not found");
+    }
+
+    // Check user rights to channel
+    if (!isAdmin && user.id !== video.user.id) {
+      throw new MethodNotAllowedException();
+    }
+
+    const newVideo = await this.videoRepository.updateVideo(updateVideoDto);
+
+    return newVideo;
   }
 }

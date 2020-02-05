@@ -12,6 +12,10 @@ export class UsersService {
     @InjectRepository(UserRepository) private userRepository: UserRepository
   ) {}
 
+  async getUser(user: User): Promise<User> {
+    return await this.userRepository.getUser(user);
+  }
+
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     return await this.userRepository.createUser(createUserDto);
   }
