@@ -5,7 +5,7 @@ import { Channel } from "src/channels/channel.entity";
 import { Video } from "src/videos/video.entity";
 import { File } from "src/files/file.entity";
 
-const entities = [User, Channel, Video, File];
+const entities = [User, Channel, Video, File, Comment];
 
 export const typeOrmConfig: PostgresConnectionOptions = {
   type: "postgres",

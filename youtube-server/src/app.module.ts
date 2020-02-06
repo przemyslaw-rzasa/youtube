@@ -10,6 +10,7 @@ import { VideosModule } from "./videos/videos.module";
 import { AuthModule } from "./auth/auth.module";
 import { FilesModule } from "./files/files.module";
 import { PUBLIC_PATH } from "./constants";
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { PUBLIC_PATH } from "./constants";
     FilesModule,
     MulterModule.register({
       dest: PUBLIC_PATH
-    })
+    }),
+    CommentsModule
   ]
 })
 export class AppModule {}
