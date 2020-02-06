@@ -1,12 +1,18 @@
 import { MinLength, MaxLength, IsNumber, IsString } from "class-validator";
+import {
+  MIN_TITLE_LENGTH,
+  MAX_TITLE_LENGTH,
+  MIN_DESCRIPTION_LENGTH,
+  MAX_DESCRIPTION_LENGTH
+} from "../constants";
 
 export class CreateVideoDto {
-  @MinLength(2)
-  @MaxLength(50)
+  @MinLength(MIN_TITLE_LENGTH)
+  @MaxLength(MAX_TITLE_LENGTH)
   title: string;
 
-  @MinLength(10)
-  @MaxLength(1000)
+  @MinLength(MIN_DESCRIPTION_LENGTH)
+  @MaxLength(MAX_DESCRIPTION_LENGTH)
   description: string;
 
   @IsNumber()

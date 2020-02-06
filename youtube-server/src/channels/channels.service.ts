@@ -4,14 +4,17 @@ import {
   NotFoundException
 } from "@nestjs/common";
 import { CreateChannelDto } from "./dto/create-channel.dto";
-import { User, Role } from "src/users/user.entity";
 import { InjectRepository } from "@nestjs/typeorm";
-import { ChannelsRepository } from "./channels.repository";
-import { UpdateChannelDto } from "./dto/update-channel.dto";
+
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+import { isAdmin } from "src/utils/helpers/isAdmin";
+
 import { Channel } from "./channel.entity";
+import { UpdateChannelDto } from "./dto/update-channel.dto";
+import { ChannelsRepository } from "./channels.repository";
 import { DeleteChannelDto } from "./dto/delete-channel.dto";
 import { GetChannelDto } from "./dto/get-channel.dto";
-import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+import { isChannelOwner } from "./helpers/isChannelOwner";
 
 @Injectable()
 export class ChannelsService {
@@ -21,22 +24,22 @@ export class ChannelsService {
   ) {}
 
   async getChannel(getChannelDto: GetChannelDto): Promise<Channel> {
-    return await await this.channelsRepository.getChannel(getChannelDto);
+    return await this.channelsRepository.getChannel(getChannelDto);
   }
 
   async createChannel(
     createChannelDto: CreateChannelDto,
-    userTokenData: UserTokenDataDto
+    userTokenDataDto: UserTokenDataDto
   ): Promise<Channel> {
     return await this.channelsRepository.createChannel(
       createChannelDto,
-      userTokenData
+      userTokenDataDto
     );
   }
 
   async updateChannel(
     updateChannelDto: UpdateChannelDto,
-    userTokenData: UserTokenDataDto
+    userTokenDataDto: UserTokenDataDto
   ): Promise<Channel> {
     const channel = await Channel.findOne(
       { id: updateChannelDto.id },
@@ -47,10 +50,10 @@ export class ChannelsService {
       throw new NotFoundException();
     }
 
-    const updatesOwnChannel = userTokenData.id === channel.user.id;
-    const isAdmin = userTokenData.role === Role.ADMIN;
-
-    if (!updatesOwnChannel && !isAdmin) {
+    if (
+      !isChannelOwner(channel, userTokenDataDto) &&
+      !isAdmin(userTokenDataDto)
+    ) {
       throw new MethodNotAllowedException();
     }
 
@@ -59,7 +62,7 @@ export class ChannelsService {
 
   async deleteChannel(
     deleteChannelDto: DeleteChannelDto,
-    userTokenData: UserTokenDataDto
+    userTokenDataDto: UserTokenDataDto
   ): Promise<void> {
     const channel = await Channel.findOne(
       { id: deleteChannelDto.id },
@@ -70,10 +73,10 @@ export class ChannelsService {
       throw new NotFoundException();
     }
 
-    const updatesOwnChannel = userTokenData.id === channel.user.id;
-    const isAdmin = userTokenData.role === Role.ADMIN;
-
-    if (!updatesOwnChannel && !isAdmin) {
+    if (
+      !isChannelOwner(channel, userTokenDataDto) &&
+      !isAdmin(userTokenDataDto)
+    ) {
       throw new MethodNotAllowedException();
     }
 

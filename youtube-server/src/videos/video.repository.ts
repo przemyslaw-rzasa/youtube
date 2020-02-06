@@ -1,15 +1,12 @@
-import {
-  Repository,
-  EntityRepository,
-  AfterRemove,
-  BeforeRemove
-} from "typeorm";
+import { Repository, EntityRepository } from "typeorm";
+
+import { File } from "src/files/file.entity";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+
 import { Video } from "./video.entity";
 import { CreateVideoDto } from "./dto/create-video.dto";
 import { GetVideoDto } from "./dto/get-video.dto";
-import { File } from "src/files/file.entity";
 import { UpdateVideoDto } from "./dto/update-video.dto";
-import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 import { DeleteVideoDto } from "./dto/delete-video.dto";
 
 @EntityRepository(Video)
@@ -25,7 +22,7 @@ export class VideoRepository extends Repository<Video> {
 
   async createVideo(
     { title, description, fileVideoId, channelId }: CreateVideoDto,
-    userTokenData: UserTokenDataDto
+    userTokenDataDto: UserTokenDataDto
   ) {
     const video = new Video();
 
@@ -34,7 +31,7 @@ export class VideoRepository extends Repository<Video> {
       description,
       videoFile: fileVideoId,
       channel: channelId,
-      user: userTokenData.id
+      user: userTokenDataDto.id
     };
 
     video.fromData(payload);
@@ -51,21 +48,17 @@ export class VideoRepository extends Repository<Video> {
     return video;
   }
 
-  async updateVideo({ id, ...manageableData }: UpdateVideoDto) {
+  async updateVideo({ id, ...manageableData }: UpdateVideoDto): Promise<Video> {
     const video = await Video.findOne({ id });
-
-    console.log(manageableData);
 
     video.fromData(manageableData);
 
-    await video.save();
-
-    return video;
+    return await video.save();
   }
 
-  async deleteVideo({ id }: DeleteVideoDto) {
+  async deleteVideo({ id }: DeleteVideoDto): Promise<void> {
     const video = await Video.findOne({ id }, { relations: ["videoFile"] });
 
-    return await video.remove();
+    await video.remove();
   }
 }

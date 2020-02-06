@@ -5,17 +5,18 @@ import {
   NotFoundException
 } from "@nestjs/common";
 
-import { User } from "./user.entity";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
 import { ERROR_CODES } from "src/constants/typeOrm";
 import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
+import { User } from "./user.entity";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  async getUser(userTokenData: UserTokenDataDto): Promise<User> {
+  async getUser(userTokenDataDto: UserTokenDataDto): Promise<User> {
     const user = await User.findOne(
-      { id: userTokenData.id },
+      { id: userTokenDataDto.id },
       {
         relations: ["channels"]
       }
@@ -31,9 +32,7 @@ export class UserRepository extends Repository<User> {
     return user;
   }
   async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const user = new User();
-
-    user.fromData(createUserDto);
+    const user = new User(createUserDto);
 
     try {
       await user.save({
@@ -55,20 +54,20 @@ export class UserRepository extends Repository<User> {
     return user;
   }
 
-  async updateUser(userData: UpdateUserDto) {
-    const user = await User.findOne({ id: userData.id });
+  async updateUser(updateUserDto: UpdateUserDto): Promise<User> {
+    const user = await User.findOne({ id: updateUserDto.id });
 
     if (!user) {
       throw new NotFoundException();
     }
 
-    user.fromData(userData);
+    user.fromData(updateUserDto);
 
     try {
       await user.save({
         customOptions: {
           isNew: false,
-          passwordChanged: !!userData.password
+          passwordChanged: !!updateUserDto.password
         }
       });
 
@@ -85,7 +84,7 @@ export class UserRepository extends Repository<User> {
     }
   }
 
-  async deleteUser(id: number) {
+  async deleteUser(id: number): Promise<void> {
     const user = await User.findOne({ id });
 
     await user.remove();

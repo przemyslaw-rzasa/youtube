@@ -1,12 +1,13 @@
 import { IsEmail, MinLength, IsOptional } from "class-validator";
+import { LOGIN_KEY, PASSWORD_KEY } from "../constants";
 
 export class UpdateUserDto {
   @IsEmail()
-  email: string;
+  [LOGIN_KEY]: string;
 
   @IsOptional()
   @MinLength(4)
-  password: string;
+  [PASSWORD_KEY]: string;
 
   @IsOptional()
   id: number;

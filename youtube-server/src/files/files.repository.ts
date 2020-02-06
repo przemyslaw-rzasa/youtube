@@ -1,15 +1,17 @@
 import { Repository, EntityRepository } from "typeorm";
+
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+
 import { File } from "./file.entity";
 import { FileDto } from "./dto/file.dto";
-import { User } from "src/users/user.entity";
-import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @EntityRepository(File)
 export class FilesRepository extends Repository<File> {
-  async saveFileData(fileDto: FileDto, userTokenData: UserTokenDataDto) {
-    const file = new File();
-
-    file.fromData({ ...fileDto, user: userTokenData.id });
+  async saveFileData(
+    fileDto: FileDto,
+    userTokenDataDto: UserTokenDataDto
+  ): Promise<File> {
+    const file = new File({ ...fileDto, user: userTokenDataDto.id });
 
     return file.save();
   }

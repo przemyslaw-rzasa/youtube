@@ -10,13 +10,18 @@ import {
   JoinColumn,
   BeforeRemove
 } from "typeorm";
+
 import { Channel } from "src/channels/channel.entity";
 import { File, FileHost } from "src/files/file.entity";
 import { User } from "src/users/user.entity";
-import { publicPath } from "src/app.module";
+import { PUBLIC_VIDEOS_PATH } from "src/constants";
+import { YoutubeEntity, FromData } from "src/utils/decorators/YoutubeEntity";
 
 @Entity()
+@YoutubeEntity()
 export class Video extends BaseEntity {
+  fromData: FromData;
+
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -54,16 +59,12 @@ export class Video extends BaseEntity {
   @Column()
   description: string;
 
-  fromData = data => {
-    Object.entries(data).forEach(([key, value]) => (this[key] = value));
-  };
-
   @BeforeRemove()
   removeStaticVideoFile() {
     const { host, filename } = this.videoFile;
 
     if (host === FileHost.LOCAL) {
-      fs.unlink(join(publicPath, "videos", filename), err => {
+      fs.unlink(join(PUBLIC_VIDEOS_PATH, filename), err => {
         console.log(err);
       });
     }

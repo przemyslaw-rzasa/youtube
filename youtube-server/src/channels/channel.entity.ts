@@ -8,12 +8,25 @@ import {
   SaveOptions,
   OneToMany
 } from "typeorm";
+
 import { User } from "src/users/user.entity";
 import { Video } from "src/videos/video.entity";
+import { YoutubeEntity, FromData } from "src/utils/decorators/YoutubeEntity";
 
+@YoutubeEntity()
 @Entity()
 @Unique(["name"])
 export class Channel extends BaseEntity {
+  fromData: FromData;
+
+  constructor(data?) {
+    super();
+
+    if (data) {
+      this.fromData(data);
+    }
+  }
+
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,8 +38,6 @@ export class Channel extends BaseEntity {
     }
   )
   user: User;
-
-  userId: string;
 
   @OneToMany(
     type => Video,
@@ -40,15 +51,8 @@ export class Channel extends BaseEntity {
   @Column()
   description: string;
 
-  fromData = data => {
-    Object.entries(data).forEach(([key, value]) => (this[key] = value));
-  };
-
   async save(saveOptions?: SaveOptions): Promise<this> {
     await super.save(saveOptions);
-
-    delete this.user;
-    delete this.userId;
 
     return this;
   }

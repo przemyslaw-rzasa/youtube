@@ -1,11 +1,15 @@
 import { Injectable, MethodNotAllowedException } from "@nestjs/common";
-import { CreateUserDto } from "./dto/create-user.dto";
 import { InjectRepository } from "@nestjs/typeorm";
+
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+import { isAdmin } from "src/utils/helpers/isAdmin";
+
+import { CreateUserDto } from "./dto/create-user.dto";
 import { UserRepository } from "./users.repository";
-import { User, Role } from "./user.entity";
+import { User } from "./user.entity";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { DeleteUserDto } from "./dto/delete-user.dto";
-import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+import { makesSelfEdit } from "./helpers/isSelfEdit";
 
 @Injectable()
 export class UsersService {
@@ -13,8 +17,8 @@ export class UsersService {
     @InjectRepository(UserRepository) private userRepository: UserRepository
   ) {}
 
-  async getUser(userTokenData: UserTokenDataDto): Promise<User> {
-    return await this.userRepository.getUser(userTokenData);
+  async getUser(userTokenDataDto: UserTokenDataDto): Promise<User> {
+    return await this.userRepository.getUser(userTokenDataDto);
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
@@ -23,20 +27,16 @@ export class UsersService {
 
   async updateUser(
     updateUserDto: UpdateUserDto,
-    userTokenData: UserTokenDataDto
-  ) {
-    const updatesForeignUser =
-      updateUserDto.id && updateUserDto.id !== userTokenData.id;
-    const isAdmin = userTokenData.role === Role.ADMIN;
+    userTokenDataDto: UserTokenDataDto
+  ): Promise<User> {
+    const selfEdit = makesSelfEdit(updateUserDto, userTokenDataDto);
 
-    if (updatesForeignUser) {
-      if (!isAdmin) {
-        throw new MethodNotAllowedException();
-      }
+    if (!selfEdit && !isAdmin(userTokenDataDto)) {
+      throw new MethodNotAllowedException();
     }
 
     const newUserData = {
-      id: updatesForeignUser ? updateUserDto.id : userTokenData.id,
+      id: selfEdit ? userTokenDataDto.id : updateUserDto.id,
       ...updateUserDto
     };
 
@@ -45,19 +45,15 @@ export class UsersService {
 
   async deleteUser(
     deleteUserDto: DeleteUserDto,
-    userTokenData: UserTokenDataDto
+    userTokenDataDto: UserTokenDataDto
   ): Promise<void> {
-    const deletesForeignUser =
-      deleteUserDto.id && deleteUserDto.id !== userTokenData.id;
-    const isAdmin = userTokenData.role === Role.ADMIN;
+    const selfDeletion = makesSelfEdit(deleteUserDto, userTokenDataDto);
 
-    if (deletesForeignUser) {
-      if (!isAdmin) {
-        throw new MethodNotAllowedException();
-      }
+    if (!selfDeletion && !isAdmin(userTokenDataDto)) {
+      throw new MethodNotAllowedException();
     }
 
-    const id = deletesForeignUser ? deleteUserDto.id : userTokenData.id;
+    const id = selfDeletion ? userTokenDataDto.id : deleteUserDto.id;
 
     return await this.userRepository.deleteUser(id);
   }

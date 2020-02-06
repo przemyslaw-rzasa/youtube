@@ -4,20 +4,22 @@ import {
   MethodNotAllowedException
 } from "@nestjs/common";
 import { CreateVideoDto } from "./dto/create-video.dto";
-import { User, Role } from "src/users/user.entity";
+import { Role } from "src/users/user.entity";
 import { Channel } from "src/channels/channel.entity";
 import * as fs from "fs";
 import { join } from "path";
 import { InjectRepository } from "@nestjs/typeorm";
 import { VideoRepository } from "./video.repository";
 import { File, FileHost } from "src/files/file.entity";
-import { publicPath } from "src/app.module";
 import { GetVideoDto } from "./dto/get-video.dto";
 import { UpdateVideoDto } from "./dto/update-video.dto";
 import { Video } from "./video.entity";
 import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 import { DeleteVideoDto } from "./dto/delete-video.dto";
 import { Response, Request } from "express";
+import { PUBLIC_VIDEOS_PATH } from "src/constants";
+import { isAdmin } from "src/utils/helpers/isAdmin";
+import { isVideoOwner } from "./helpers/isVideoOwner";
 
 @Injectable()
 export class VideosService {
@@ -25,11 +27,15 @@ export class VideosService {
     @InjectRepository(VideoRepository) private videoRepository: VideoRepository
   ) {}
 
-  async getVideo(getVideoDto: GetVideoDto) {
+  async getVideo(getVideoDto: GetVideoDto): Promise<Video> {
     return await this.videoRepository.getVideo(getVideoDto);
   }
 
-  async streamVideo(videoId: number, req: Request, res: Response) {
+  async streamVideo(
+    videoId: number,
+    req: Request,
+    res: Response
+  ): Promise<void> {
     const videoData = await Video.findOne(
       { id: videoId },
       { relations: ["videoFile"] }
@@ -41,9 +47,9 @@ export class VideosService {
 
     const { filename } = videoData.videoFile;
 
-    const videoFilePath = join(publicPath, "videos", filename);
+    const videoFilePath = join(PUBLIC_VIDEOS_PATH, filename);
 
-    const stats: fs.Stats = await new Promise((resolve, reject) => {
+    const fileStats: fs.Stats = await new Promise((resolve, reject) => {
       fs.stat(videoFilePath, (err, stats) => {
         if (err) {
           reject(err);
@@ -62,20 +68,20 @@ export class VideosService {
         .filter(Boolean);
 
       const start = Number(parts[0]);
-      const end = parts[1] ? Number(parts[1]) : stats.size;
+      const end = parts[1] ? Number(parts[1]) : fileStats.size;
 
       const chunkSize = end - start + 1;
 
       const file = fs.createReadStream(videoFilePath, { start, end });
 
-      res.setHeader("Content-Range", `bytes ${start}-${end}/${stats.size}`);
+      res.setHeader("Content-Range", `bytes ${start}-${end}/${fileStats.size}`);
       res.setHeader("Accept-Range", "bytes");
       res.setHeader("Content-Length", chunkSize);
       res.setHeader("Content-Type", "video/mp4");
 
       file.pipe(res);
     } else {
-      res.setHeader("Content-Length", stats.size);
+      res.setHeader("Content-Length", fileStats.size);
       res.setHeader("Content-Type", "video/mp4");
 
       fs.createReadStream(videoFilePath).pipe(res);
@@ -84,13 +90,12 @@ export class VideosService {
 
   async createVideo(
     createVideoDto: CreateVideoDto,
-    userTokenData: UserTokenDataDto
-  ) {
+    userTokenDataDto: UserTokenDataDto
+  ): Promise<Video> {
     const { channelId, fileVideoId } = createVideoDto;
 
-    const isAdmin = userTokenData.role === Role.ADMIN;
+    const isAdmin = userTokenDataDto.role === Role.ADMIN;
 
-    // Check if channel exists
     const channel = await Channel.findOne(
       { id: channelId },
       {
@@ -98,12 +103,13 @@ export class VideosService {
       }
     );
 
+    // Check, if channel even exists
     if (!channel) {
       throw new NotFoundException("Channel not found");
     }
 
     // Check user rights to channel
-    if (!isAdmin && userTokenData.id !== channel.user.id) {
+    if (!isAdmin && userTokenDataDto.id !== channel.user.id) {
       throw new MethodNotAllowedException();
     }
 
@@ -118,34 +124,31 @@ export class VideosService {
     }
 
     // Check user rights to channel
-    if (!isAdmin && userTokenData.id !== videoData.user.id) {
+    if (!isAdmin && userTokenDataDto.id !== videoData.user.id) {
       throw new MethodNotAllowedException();
     }
 
     // Check if file exists
-    const doesFileExists = () =>
-      new Promise((resolve, reject) => {
-        if (videoData.host === FileHost.LOCAL) {
-          fs.access(
-            join(publicPath, "videos", videoData.filename),
-            fs.constants.F_OK,
-            async err => {
-              if (err) {
-                resolve(false);
-              }
-
-              return resolve(true);
+    const fileExists = await new Promise(resolve => {
+      if (videoData.host === FileHost.LOCAL) {
+        fs.access(
+          join(PUBLIC_VIDEOS_PATH, videoData.filename),
+          fs.constants.F_OK,
+          async err => {
+            if (err) {
+              resolve(false);
             }
-          );
-        }
-      });
 
-    const fileExists = await doesFileExists();
+            return resolve(true);
+          }
+        );
+      }
+    });
 
     if (fileExists) {
       const video = await this.videoRepository.createVideo(
         createVideoDto,
-        userTokenData
+        userTokenDataDto
       );
 
       return video;
@@ -156,35 +159,30 @@ export class VideosService {
 
   async updateVideo(
     updateVideoDto: UpdateVideoDto,
-    userTokenData: UserTokenDataDto
-  ) {
+    userTokenDataDto: UserTokenDataDto
+  ): Promise<Video> {
     const { id } = updateVideoDto;
-
-    const isAdmin = userTokenData.role === Role.ADMIN;
 
     const video = await Video.findOne({ id }, { relations: ["user"] });
 
+    // Check, if video exists
     if (!video) {
       throw new NotFoundException("Video not found");
     }
 
     // Check user rights to channel
-    if (!isAdmin && userTokenData.id !== video.user.id) {
+    if (!isAdmin(userTokenDataDto) && isVideoOwner(video, userTokenDataDto)) {
       throw new MethodNotAllowedException();
     }
 
-    const newVideo = await this.videoRepository.updateVideo(updateVideoDto);
-
-    return newVideo;
+    return await this.videoRepository.updateVideo(updateVideoDto);
   }
 
   async deleteVideo(
     deleteVideoDto: DeleteVideoDto,
-    userTokenData: UserTokenDataDto
+    userTokenDataDto: UserTokenDataDto
   ): Promise<void> {
     const { id } = deleteVideoDto;
-
-    const isAdmin = userTokenData.role === Role.ADMIN;
 
     const video = await Video.findOne({ id }, { relations: ["user"] });
 
@@ -193,7 +191,7 @@ export class VideosService {
     }
 
     // Check user rights to channel
-    if (!isAdmin && userTokenData.id !== video.user.id) {
+    if (!isAdmin(userTokenDataDto) && isVideoOwner(video, userTokenDataDto)) {
       throw new MethodNotAllowedException();
     }
 

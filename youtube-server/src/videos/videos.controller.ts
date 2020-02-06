@@ -9,21 +9,22 @@ import {
   Get,
   Put,
   Delete,
-  Query,
   Param,
   Req,
   Res
 } from "@nestjs/common";
-import { VideosService } from "./videos.service";
-import { GetUser } from "src/auth/get-user.decorator";
+import { Response, Request } from "express";
 import { AuthGuard } from "@nestjs/passport";
+
+import { GetUser } from "src/auth/get-user.decorator";
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+
+import { VideosService } from "./videos.service";
+import { Video } from "./video.entity";
 import { CreateVideoDto } from "./dto/create-video.dto";
 import { GetVideoDto } from "./dto/get-video.dto";
 import { UpdateVideoDto } from "./dto/update-video.dto";
-import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 import { DeleteVideoDto } from "./dto/delete-video.dto";
-import { Video } from "./video.entity";
-import { Response, Request } from "express";
 
 @Controller("videos")
 export class VideosController {
@@ -31,7 +32,6 @@ export class VideosController {
 
   @Get()
   @HttpCode(200)
-  @UseGuards(AuthGuard("jwt"))
   @UsePipes(new ValidationPipe({ whitelist: true }))
   getVideo(@Body() getVideoDto: GetVideoDto): Promise<Video> {
     return this.videoService.getVideo(getVideoDto);
@@ -43,7 +43,7 @@ export class VideosController {
     @Param("videoId") videoId: string,
     @Req() req: Request,
     @Res() res: Response
-  ) {
+  ): Promise<void> {
     return this.videoService.streamVideo(Number(videoId), req, res);
   }
 
@@ -53,9 +53,9 @@ export class VideosController {
   @UsePipes(new ValidationPipe({ whitelist: true }))
   createVideo(
     @Body() createVideoDto: CreateVideoDto,
-    @GetUser() userTokenData: UserTokenDataDto
+    @GetUser() userTokenDataDto: UserTokenDataDto
   ): Promise<Video> {
-    return this.videoService.createVideo(createVideoDto, userTokenData);
+    return this.videoService.createVideo(createVideoDto, userTokenDataDto);
   }
 
   @Put()
@@ -63,9 +63,9 @@ export class VideosController {
   @UsePipes(new ValidationPipe({ whitelist: true }))
   updateVideo(
     @Body() updateVideoDto: UpdateVideoDto,
-    @GetUser() userTokenData: UserTokenDataDto
+    @GetUser() userTokenDataDto: UserTokenDataDto
   ): Promise<Video> {
-    return this.videoService.updateVideo(updateVideoDto, userTokenData);
+    return this.videoService.updateVideo(updateVideoDto, userTokenDataDto);
   }
 
   @Delete()
@@ -74,8 +74,8 @@ export class VideosController {
   @UsePipes(new ValidationPipe({ whitelist: true }))
   deleteVideo(
     @Body() deleteVideoDto: DeleteVideoDto,
-    @GetUser() userTokenData: UserTokenDataDto
+    @GetUser() userTokenDataDto: UserTokenDataDto
   ): Promise<void> {
-    return this.videoService.deleteVideo(deleteVideoDto, userTokenData);
+    return this.videoService.deleteVideo(deleteVideoDto, userTokenDataDto);
   }
 }

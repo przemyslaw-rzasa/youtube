@@ -1,9 +1,10 @@
 import { IsEmail, MinLength } from "class-validator";
+import { LOGIN_KEY, PASSWORD_KEY } from "../constants";
 
 export class CreateUserDto {
   @IsEmail()
-  email: string;
+  [LOGIN_KEY]: string;
 
   @MinLength(4)
-  password: string;
+  [PASSWORD_KEY]: string;
 }

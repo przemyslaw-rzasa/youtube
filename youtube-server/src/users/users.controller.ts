@@ -10,23 +10,26 @@ import {
   UseGuards,
   HttpCode
 } from "@nestjs/common";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UsersService } from "./users.service";
 import { AuthGuard } from "@nestjs/passport";
+
+import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 import { GetUser } from "src/auth/get-user.decorator";
+
+import { UsersService } from "./users.service";
 import { User } from "./user.entity";
+import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { DeleteUserDto } from "./dto/delete-user.dto";
-import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
 @Controller("users")
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
+  @HttpCode(200)
   @UseGuards(AuthGuard("jwt"))
-  getUser(@GetUser() userTokenData: UserTokenDataDto) {
-    return this.usersService.getUser(userTokenData);
+  getUser(@GetUser() userTokenDataDto: UserTokenDataDto): Promise<User> {
+    return this.usersService.getUser(userTokenDataDto);
   }
 
   @Post()
@@ -37,13 +40,14 @@ export class UsersController {
   }
 
   @Put()
-  @UsePipes(new ValidationPipe({ whitelist: true }))
+  @HttpCode(201)
   @UseGuards(AuthGuard("jwt"))
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   updateUser(
     @Body() updateUserDto: UpdateUserDto,
-    @GetUser() userTokenData: UserTokenDataDto
+    @GetUser() userTokenDataDto: UserTokenDataDto
   ): Promise<User> {
-    return this.usersService.updateUser(updateUserDto, userTokenData);
+    return this.usersService.updateUser(updateUserDto, userTokenDataDto);
   }
 
   @Delete()
@@ -51,8 +55,8 @@ export class UsersController {
   @UseGuards(AuthGuard("jwt"))
   deleteUser(
     @Body() deleteUserDto: DeleteUserDto,
-    @GetUser() userTokenData: UserTokenDataDto
+    @GetUser() userTokenDataDto: UserTokenDataDto
   ): Promise<void> {
-    return this.usersService.deleteUser(deleteUserDto, userTokenData);
+    return this.usersService.deleteUser(deleteUserDto, userTokenDataDto);
   }
 }

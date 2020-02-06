@@ -8,10 +8,11 @@ import {
   OneToMany,
   SaveOptions
 } from "typeorm";
-import { classToPlain, Exclude } from "class-transformer";
+
 import { Channel } from "src/channels/channel.entity";
 import { File } from "src/files/file.entity";
 import { Video } from "src/videos/video.entity";
+import { YoutubeEntity, FromData } from "src/utils/decorators/YoutubeEntity";
 
 export enum Role {
   ADMIN = "admin",
@@ -27,9 +28,21 @@ interface AdditionalSaveOptions {
 
 type SaveUserOptions = SaveOptions & AdditionalSaveOptions;
 
+@YoutubeEntity()
 @Entity()
 @Unique(["email"])
 export class User extends BaseEntity {
+  // @todo: Possibility, to have it declared out of box?
+  fromData: FromData;
+
+  constructor(data?) {
+    super();
+
+    if (data) {
+      this.fromData(data);
+    }
+  }
+
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -37,11 +50,9 @@ export class User extends BaseEntity {
   email: string;
 
   @Column()
-  @Exclude()
   salt: string;
 
   @Column()
-  @Exclude()
   password: string;
 
   @Column({
@@ -69,27 +80,23 @@ export class User extends BaseEntity {
   )
   files: File[];
 
-  fromData = data => {
-    Object.entries(data).forEach(([key, value]) => (this[key] = value));
-  };
-
-  validatePassword = async password => {
+  validatePassword = async (password): Promise<boolean> => {
     const hashedPassword = await bcrypt.hash(password, this.salt);
 
     return hashedPassword === this.password;
   };
 
-  hashPassword = async () => {
+  hashPassword = async (): Promise<void> => {
     this.salt = await bcrypt.genSalt();
 
     this.password = await bcrypt.hash(this.password, this.salt);
   };
 
   save = async ({
-    customOptions,
+    customOptions = {},
     ...saveOptions
   }: SaveUserOptions = {}): Promise<this> => {
-    const { isNew, passwordChanged } = customOptions || {};
+    const { isNew, passwordChanged } = customOptions;
 
     if (isNew || passwordChanged) {
       await this.hashPassword();

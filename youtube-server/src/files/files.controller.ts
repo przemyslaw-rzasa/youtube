@@ -1,7 +1,5 @@
 import { join } from "path";
 import { diskStorage } from "multer";
-import * as uuid from "uuid";
-
 import {
   Controller,
   Post,
@@ -11,38 +9,18 @@ import {
   BadRequestException
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { FilesService } from "./files.service";
-import { PUBLIC_PATH } from "src/constants";
-import { FileDto } from "./dto/file.dto";
-import { FileType, FileHost } from "./file.entity";
 import { AuthGuard } from "@nestjs/passport";
+
 import { GetUser } from "src/auth/get-user.decorator";
-import { User } from "src/users/user.entity";
 import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
+import { PUBLIC_IMAGES_PATH, PUBLIC_VIDEOS_PATH } from "src/constants";
 
-const editFileName = (req, file, callback) => {
-  const arrayOriginalName = file.originalname.split(".");
-  const ext = arrayOriginalName.pop();
-  const unique = uuid().replace(/-/g, "");
-
-  const filename = `${arrayOriginalName.join("_")}_${unique}.${ext}`;
-
-  callback(null, filename);
-};
-
-const imageFileFilter = (req, file, callback) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-    return callback(new Error("Only image files are allowed!"), false);
-  }
-  callback(null, true);
-};
-
-const videoFileFilter = (req, file, callback) => {
-  if (!file.originalname.match(/\.(mp4|avi)$/)) {
-    return callback(new Error("Only image files are allowed!"), false);
-  }
-  callback(null, true);
-};
+import { FilesService } from "./files.service";
+import { FileDto } from "./dto/file.dto";
+import { FileType, FileHost, File } from "./file.entity";
+import { editFileName } from "./helpers/editFileName";
+import { imageFileFilter } from "./helpers/imageFileFilter";
+import { videoFileFilter } from "./helpers/videoFileFilter";
 
 @Controller("files")
 export class FilesController {
@@ -54,15 +32,15 @@ export class FilesController {
     FileInterceptor("data", {
       fileFilter: imageFileFilter,
       storage: diskStorage({
-        destination: join(PUBLIC_PATH, "images"),
+        destination: PUBLIC_IMAGES_PATH,
         filename: editFileName
       })
     })
   )
   async uploadImage(
     @UploadedFile() file,
-    @GetUser() userTokenData: UserTokenDataDto
-  ) {
+    @GetUser() userTokenDataDto: UserTokenDataDto
+  ): Promise<File> {
     if (!file) {
       throw new BadRequestException("File not provided");
     }
@@ -79,7 +57,7 @@ export class FilesController {
 
     const fileData = await this.filesService.saveFileData(
       fileDto,
-      userTokenData
+      userTokenDataDto
     );
 
     return fileData;
@@ -91,15 +69,15 @@ export class FilesController {
     FileInterceptor("data", {
       fileFilter: videoFileFilter,
       storage: diskStorage({
-        destination: join(PUBLIC_PATH, "videos"),
+        destination: PUBLIC_VIDEOS_PATH,
         filename: editFileName
       })
     })
   )
   async uploadVideo(
     @UploadedFile() file,
-    @GetUser() userTokenData: UserTokenDataDto
-  ) {
+    @GetUser() userTokenDataDto: UserTokenDataDto
+  ): Promise<File> {
     if (!file) {
       throw new BadRequestException("File not provided");
     }
@@ -116,7 +94,7 @@ export class FilesController {
 
     const fileData = await this.filesService.saveFileData(
       fileDto,
-      userTokenData
+      userTokenDataDto
     );
 
     return fileData;

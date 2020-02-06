@@ -1,0 +1,2 @@
+export const MIN_CHANNEL_NAME_LENGTH = 2;
+export const MIN_CHANNEL_DESCRIPTION_LENGTH = 20;

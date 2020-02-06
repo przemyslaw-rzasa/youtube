@@ -10,6 +10,7 @@ import {
 } from "typeorm";
 import { User } from "src/users/user.entity";
 import { Video } from "src/videos/video.entity";
+import { YoutubeEntity, FromData } from "src/utils/decorators/YoutubeEntity";
 
 export enum FileType {
   VIDEO = "video",
@@ -21,8 +22,19 @@ export enum FileHost {
   S3 = "s3"
 }
 
+@YoutubeEntity()
 @Entity()
 export class File extends BaseEntity {
+  fromData: FromData;
+
+  constructor(data?) {
+    super();
+
+    if (data) {
+      this.fromData(data);
+    }
+  }
+
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -64,10 +76,6 @@ export class File extends BaseEntity {
   )
   @JoinColumn()
   video: Video;
-
-  fromData = data => {
-    Object.entries(data).forEach(([key, value]) => (this[key] = value));
-  };
 
   async save(saveOptions?: SaveOptions): Promise<this> {
     await super.save(saveOptions);
