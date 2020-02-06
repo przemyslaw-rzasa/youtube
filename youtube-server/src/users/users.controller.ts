@@ -33,7 +33,6 @@ export class UsersController {
   @HttpCode(201)
   @UsePipes(new ValidationPipe({ whitelist: true }))
   createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
-    console.log(createUserDto);
     return this.usersService.createUser(createUserDto);
   }
 

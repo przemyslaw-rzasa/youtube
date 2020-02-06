@@ -37,11 +37,11 @@ export class User extends BaseEntity {
   email: string;
 
   @Column()
-  @Exclude({ toPlainOnly: true })
+  @Exclude()
   salt: string;
 
   @Column()
-  @Exclude({ toPlainOnly: true })
+  @Exclude()
   password: string;
 
   @Column({
@@ -96,9 +96,6 @@ export class User extends BaseEntity {
     }
 
     await super.save(saveOptions);
-
-    delete this.password;
-    delete this.salt;
 
     return this;
   };

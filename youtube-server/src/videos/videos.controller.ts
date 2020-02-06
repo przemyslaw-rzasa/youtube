@@ -8,7 +8,11 @@ import {
   UseGuards,
   Get,
   Put,
-  Delete
+  Delete,
+  Query,
+  Param,
+  Req,
+  Res
 } from "@nestjs/common";
 import { VideosService } from "./videos.service";
 import { GetUser } from "src/auth/get-user.decorator";
@@ -18,6 +22,8 @@ import { GetVideoDto } from "./dto/get-video.dto";
 import { UpdateVideoDto } from "./dto/update-video.dto";
 import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 import { DeleteVideoDto } from "./dto/delete-video.dto";
+import { Video } from "./video.entity";
+import { Response, Request } from "express";
 
 @Controller("videos")
 export class VideosController {
@@ -27,8 +33,18 @@ export class VideosController {
   @HttpCode(200)
   @UseGuards(AuthGuard("jwt"))
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  getVideo(@Body() getVideoDto: GetVideoDto): any {
+  getVideo(@Body() getVideoDto: GetVideoDto): Promise<Video> {
     return this.videoService.getVideo(getVideoDto);
+  }
+
+  @Get("/:videoId")
+  @HttpCode(200)
+  streamVideo(
+    @Param("videoId") videoId: string,
+    @Req() req: Request,
+    @Res() res: Response
+  ) {
+    return this.videoService.streamVideo(Number(videoId), req, res);
   }
 
   @Post()
@@ -38,7 +54,7 @@ export class VideosController {
   createVideo(
     @Body() createVideoDto: CreateVideoDto,
     @GetUser() userTokenData: UserTokenDataDto
-  ): any {
+  ): Promise<Video> {
     return this.videoService.createVideo(createVideoDto, userTokenData);
   }
 
@@ -48,7 +64,7 @@ export class VideosController {
   updateVideo(
     @Body() updateVideoDto: UpdateVideoDto,
     @GetUser() userTokenData: UserTokenDataDto
-  ): any {
+  ): Promise<Video> {
     return this.videoService.updateVideo(updateVideoDto, userTokenData);
   }
 

@@ -14,11 +14,19 @@ import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
   async getUser(userTokenData: UserTokenDataDto): Promise<User> {
-    const user = await User.findOne({ id: userTokenData.id });
+    const user = await User.findOne(
+      { id: userTokenData.id },
+      {
+        relations: ["channels"]
+      }
+    );
 
     if (!user) {
       throw new NotFoundException("User does not exists");
     }
+
+    delete user.password;
+    delete user.salt;
 
     return user;
   }
@@ -41,6 +49,9 @@ export class UserRepository extends Repository<User> {
       throw new InternalServerErrorException();
     }
 
+    delete user.password;
+    delete user.salt;
+
     return user;
   }
 
@@ -60,6 +71,9 @@ export class UserRepository extends Repository<User> {
           passwordChanged: !!userData.password
         }
       });
+
+      delete user.password;
+      delete user.salt;
 
       return user;
     } catch (error) {

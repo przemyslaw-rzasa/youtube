@@ -1,3 +1,5 @@
+import * as fs from "fs";
+import { join } from "path";
 import {
   BaseEntity,
   Entity,
@@ -5,11 +7,13 @@ import {
   Column,
   ManyToOne,
   OneToOne,
-  JoinColumn
+  JoinColumn,
+  BeforeRemove
 } from "typeorm";
 import { Channel } from "src/channels/channel.entity";
-import { File } from "src/files/file.entity";
+import { File, FileHost } from "src/files/file.entity";
 import { User } from "src/users/user.entity";
+import { publicPath } from "src/app.module";
 
 @Entity()
 export class Video extends BaseEntity {
@@ -53,4 +57,15 @@ export class Video extends BaseEntity {
   fromData = data => {
     Object.entries(data).forEach(([key, value]) => (this[key] = value));
   };
+
+  @BeforeRemove()
+  removeStaticVideoFile() {
+    const { host, filename } = this.videoFile;
+
+    if (host === FileHost.LOCAL) {
+      fs.unlink(join(publicPath, "videos", filename), err => {
+        console.log(err);
+      });
+    }
+  }
 }

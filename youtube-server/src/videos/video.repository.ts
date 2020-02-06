@@ -1,4 +1,9 @@
-import { Repository, EntityRepository } from "typeorm";
+import {
+  Repository,
+  EntityRepository,
+  AfterRemove,
+  BeforeRemove
+} from "typeorm";
 import { Video } from "./video.entity";
 import { CreateVideoDto } from "./dto/create-video.dto";
 import { GetVideoDto } from "./dto/get-video.dto";
@@ -59,7 +64,7 @@ export class VideoRepository extends Repository<Video> {
   }
 
   async deleteVideo({ id }: DeleteVideoDto) {
-    const video = await Video.findOne({ id });
+    const video = await Video.findOne({ id }, { relations: ["videoFile"] });
 
     return await video.remove();
   }

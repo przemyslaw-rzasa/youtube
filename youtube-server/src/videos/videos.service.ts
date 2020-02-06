@@ -17,6 +17,7 @@ import { UpdateVideoDto } from "./dto/update-video.dto";
 import { Video } from "./video.entity";
 import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 import { DeleteVideoDto } from "./dto/delete-video.dto";
+import { Response, Request } from "express";
 
 @Injectable()
 export class VideosService {
@@ -26,6 +27,59 @@ export class VideosService {
 
   async getVideo(getVideoDto: GetVideoDto) {
     return await this.videoRepository.getVideo(getVideoDto);
+  }
+
+  async streamVideo(videoId: number, req: Request, res: Response) {
+    const videoData = await Video.findOne(
+      { id: videoId },
+      { relations: ["videoFile"] }
+    );
+
+    if (!videoData) {
+      throw new NotFoundException("Video not found");
+    }
+
+    const { filename } = videoData.videoFile;
+
+    const videoFilePath = join(publicPath, "videos", filename);
+
+    const stats: fs.Stats = await new Promise((resolve, reject) => {
+      fs.stat(videoFilePath, (err, stats) => {
+        if (err) {
+          reject(err);
+        }
+
+        resolve(stats);
+      });
+    });
+
+    const { range } = req.headers;
+
+    if (range) {
+      const parts = range
+        .replace("bytes=", "")
+        .split("-")
+        .filter(Boolean);
+
+      const start = Number(parts[0]);
+      const end = parts[1] ? Number(parts[1]) : stats.size;
+
+      const chunkSize = end - start + 1;
+
+      const file = fs.createReadStream(videoFilePath, { start, end });
+
+      res.setHeader("Content-Range", `bytes ${start}-${end}/${stats.size}`);
+      res.setHeader("Accept-Range", "bytes");
+      res.setHeader("Content-Length", chunkSize);
+      res.setHeader("Content-Type", "video/mp4");
+
+      file.pipe(res);
+    } else {
+      res.setHeader("Content-Length", stats.size);
+      res.setHeader("Content-Type", "video/mp4");
+
+      fs.createReadStream(videoFilePath).pipe(res);
+    }
   }
 
   async createVideo(
