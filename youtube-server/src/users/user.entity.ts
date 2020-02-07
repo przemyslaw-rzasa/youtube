@@ -13,6 +13,7 @@ import { Channel } from "src/channels/channel.entity";
 import { File } from "src/files/file.entity";
 import { Video } from "src/videos/video.entity";
 import { YoutubeEntity, FromData } from "src/utils/decorators/YoutubeEntity";
+import { Comment } from "src/comments/comment.entity";
 
 export enum Role {
   ADMIN = "admin",
@@ -79,6 +80,12 @@ export class User extends BaseEntity {
     file => file.user
   )
   files: File[];
+
+  @OneToMany(
+    type => Comment,
+    comment => comment.user
+  )
+  comments: Comment[];
 
   validatePassword = async (password): Promise<boolean> => {
     const hashedPassword = await bcrypt.hash(password, this.salt);

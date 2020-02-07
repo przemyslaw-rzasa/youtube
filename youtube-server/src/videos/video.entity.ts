@@ -16,6 +16,7 @@ import { File, FileHost } from "src/files/file.entity";
 import { User } from "src/users/user.entity";
 import { PUBLIC_VIDEOS_PATH } from "src/constants";
 import { YoutubeEntity, FromData } from "src/utils/decorators/YoutubeEntity";
+import { Comment } from "src/comments/comment.entity";
 
 @Entity()
 @YoutubeEntity()
@@ -24,6 +25,12 @@ export class Video extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  title: string;
+
+  @Column()
+  description: string;
 
   @ManyToOne(
     type => Channel,
@@ -53,11 +60,11 @@ export class Video extends BaseEntity {
   @JoinColumn()
   videoFile: File;
 
-  @Column()
-  title: string;
-
-  @Column()
-  description: string;
+  @ManyToOne(
+    type => Comment,
+    comment => comment.video
+  )
+  comments: Comment[];
 
   @BeforeRemove()
   removeStaticVideoFile() {

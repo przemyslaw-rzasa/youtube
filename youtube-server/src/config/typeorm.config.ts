@@ -4,6 +4,7 @@ import { User } from "src/users/user.entity";
 import { Channel } from "src/channels/channel.entity";
 import { Video } from "src/videos/video.entity";
 import { File } from "src/files/file.entity";
+import { Comment } from "src/comments/comment.entity";
 
 const entities = [User, Channel, Video, File, Comment];
 
