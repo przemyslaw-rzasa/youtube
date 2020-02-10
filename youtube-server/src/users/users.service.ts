@@ -6,7 +6,7 @@ import { isAdmin } from "src/utils/helpers/isAdmin";
 
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UserRepository } from "./users.repository";
-import { User } from "./user.entity";
+import { User, SensitiveUser } from "./user.entity";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { DeleteUserDto } from "./dto/delete-user.dto";
 import { makesSelfEdit } from "./helpers/isSelfEdit";
@@ -17,18 +17,18 @@ export class UsersService {
     @InjectRepository(UserRepository) private userRepository: UserRepository
   ) {}
 
-  async getUser(userTokenDataDto: UserTokenDataDto): Promise<User> {
+  async getUser(userTokenDataDto: UserTokenDataDto): Promise<SensitiveUser> {
     return await this.userRepository.getUser(userTokenDataDto);
   }
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+  async createUser(createUserDto: CreateUserDto): Promise<SensitiveUser> {
     return await this.userRepository.createUser(createUserDto);
   }
 
   async updateUser(
     updateUserDto: UpdateUserDto,
     userTokenDataDto: UserTokenDataDto
-  ): Promise<User> {
+  ): Promise<SensitiveUser> {
     const selfEdit = makesSelfEdit(updateUserDto, userTokenDataDto);
 
     if (!selfEdit && !isAdmin(userTokenDataDto)) {

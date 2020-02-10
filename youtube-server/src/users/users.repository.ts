@@ -8,13 +8,13 @@ import {
 import { ERROR_CODES } from "src/constants/typeOrm";
 import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
-import { User } from "./user.entity";
+import { User, SensitiveUser } from "./user.entity";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  async getUser(userTokenDataDto: UserTokenDataDto): Promise<User> {
+  async getUser(userTokenDataDto: UserTokenDataDto): Promise<SensitiveUser> {
     const user = await User.findOne(
       { id: userTokenDataDto.id },
       {
@@ -26,12 +26,10 @@ export class UserRepository extends Repository<User> {
       throw new NotFoundException("User does not exists");
     }
 
-    delete user.password;
-    delete user.salt;
-
-    return user;
+    return user.insensitiveData;
   }
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+
+  async createUser(createUserDto: CreateUserDto): Promise<SensitiveUser> {
     const user = new User(createUserDto);
 
     try {
@@ -48,13 +46,10 @@ export class UserRepository extends Repository<User> {
       throw new InternalServerErrorException();
     }
 
-    delete user.password;
-    delete user.salt;
-
-    return user;
+    return user.insensitiveData;
   }
 
-  async updateUser(updateUserDto: UpdateUserDto): Promise<User> {
+  async updateUser(updateUserDto: UpdateUserDto): Promise<SensitiveUser> {
     const user = await User.findOne({ id: updateUserDto.id });
 
     if (!user) {
@@ -71,10 +66,7 @@ export class UserRepository extends Repository<User> {
         }
       });
 
-      delete user.password;
-      delete user.salt;
-
-      return user;
+      return user.insensitiveData;
     } catch (error) {
       if (error.code === ERROR_CODES.CONFLICT) {
         throw new ConflictException("User with this email already exists");

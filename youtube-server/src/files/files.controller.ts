@@ -16,11 +16,11 @@ import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 import { PUBLIC_IMAGES_PATH, PUBLIC_VIDEOS_PATH } from "src/constants";
 
 import { FilesService } from "./files.service";
-import { FileDto } from "./dto/file.dto";
 import { FileType, FileHost, File } from "./file.entity";
 import { editFileName } from "./helpers/editFileName";
 import { imageFileFilter } from "./helpers/imageFileFilter";
 import { videoFileFilter } from "./helpers/videoFileFilter";
+import { SaveFileDataDto } from "./dto/save-file-data.dto";
 
 @Controller("files")
 export class FilesController {
@@ -47,7 +47,7 @@ export class FilesController {
 
     const { originalname, filename, size } = file;
 
-    const fileDto: FileDto = {
+    const fileDto: SaveFileDataDto = {
       originalname,
       filename,
       size,
@@ -63,6 +63,7 @@ export class FilesController {
     return fileData;
   }
 
+  // @todo: What if, video creation will fail?
   @Post("/video")
   @UseGuards(AuthGuard("jwt"))
   @UseInterceptors(
@@ -84,7 +85,7 @@ export class FilesController {
 
     const { originalname, filename, size } = file;
 
-    const fileDto: FileDto = {
+    const fileDto: SaveFileDataDto = {
       originalname,
       filename,
       size,

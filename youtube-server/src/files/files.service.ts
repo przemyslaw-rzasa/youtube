@@ -3,9 +3,10 @@ import { InjectRepository } from "@nestjs/typeorm";
 
 import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 
-import { FileDto } from "./dto/file.dto";
 import { FilesRepository } from "./files.repository";
 import { File } from "./file.entity";
+import { RemoveFileDataDto } from "./dto/remove-file-data.dto";
+import { SaveFileDataDto } from "./dto/save-file-data.dto";
 
 @Injectable()
 export class FilesService {
@@ -14,9 +15,13 @@ export class FilesService {
   ) {}
 
   async saveFileData(
-    fileDto: FileDto,
+    fileDto: SaveFileDataDto,
     userTokenDataDto: UserTokenDataDto
   ): Promise<File> {
     return await this.filesRepository.saveFileData(fileDto, userTokenDataDto);
   }
+
+  // async removeFileData(removeFileDataDto: RemoveFileDataDto) {
+  //   return await this.filesRepository.removeFileData(removeFileDataDto);
+  // }
 }

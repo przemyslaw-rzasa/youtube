@@ -16,7 +16,7 @@ import { UserTokenDataDto } from "src/auth/dto/user-token.dto";
 import { GetUser } from "src/auth/get-user.decorator";
 
 import { UsersService } from "./users.service";
-import { User } from "./user.entity";
+import { User, SensitiveUser } from "./user.entity";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { DeleteUserDto } from "./dto/delete-user.dto";
@@ -28,14 +28,16 @@ export class UsersController {
   @Get()
   @HttpCode(200)
   @UseGuards(AuthGuard("jwt"))
-  getUser(@GetUser() userTokenDataDto: UserTokenDataDto): Promise<User> {
+  getUser(
+    @GetUser() userTokenDataDto: UserTokenDataDto
+  ): Promise<SensitiveUser> {
     return this.usersService.getUser(userTokenDataDto);
   }
 
   @Post()
   @HttpCode(201)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
+  createUser(@Body() createUserDto: CreateUserDto): Promise<SensitiveUser> {
     return this.usersService.createUser(createUserDto);
   }
 
@@ -46,7 +48,7 @@ export class UsersController {
   updateUser(
     @Body() updateUserDto: UpdateUserDto,
     @GetUser() userTokenDataDto: UserTokenDataDto
-  ): Promise<User> {
+  ): Promise<SensitiveUser> {
     return this.usersService.updateUser(updateUserDto, userTokenDataDto);
   }
 

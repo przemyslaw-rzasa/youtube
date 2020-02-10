@@ -191,7 +191,7 @@ export class VideosService {
     }
 
     // Check user rights to channel
-    if (!isAdmin(userTokenDataDto) && isVideoOwner(video, userTokenDataDto)) {
+    if (!isAdmin(userTokenDataDto) && !isVideoOwner(video, userTokenDataDto)) {
       throw new MethodNotAllowedException();
     }
 

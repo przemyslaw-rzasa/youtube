@@ -1,4 +1,11 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  AfterInsert,
+  Column
+} from "typeorm";
 import { YoutubeEntity, FromData } from "src/utils/decorators/YoutubeEntity";
 import { User } from "src/users/user.entity";
 import { Video } from "src/videos/video.entity";
@@ -19,15 +26,24 @@ export class Comment extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  content: string;
+
   @ManyToOne(
     type => User,
-    user => user.comments
+    user => user.comments,
+    {
+      onDelete: "CASCADE"
+    }
   )
   user: User;
 
   @ManyToOne(
     type => Video,
-    video => video.comments
+    video => video.comments,
+    {
+      onDelete: "CASCADE"
+    }
   )
   video: Video;
 }

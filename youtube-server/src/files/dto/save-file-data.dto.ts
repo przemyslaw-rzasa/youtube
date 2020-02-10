@@ -1,6 +1,6 @@
 import { FileHost, FileType } from "../file.entity";
 
-export class FileDto {
+export class SaveFileDataDto {
   originalname: string;
   filename: string;
   size: number;

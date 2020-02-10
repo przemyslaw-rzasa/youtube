@@ -8,6 +8,7 @@ import { FilesRepository } from "./files.repository";
 @Module({
   controllers: [FilesController],
   providers: [FilesService],
-  imports: [TypeOrmModule.forFeature([FilesRepository])]
+  imports: [TypeOrmModule.forFeature([FilesRepository])],
+  exports: [FilesService]
 })
 export class FilesModule {}

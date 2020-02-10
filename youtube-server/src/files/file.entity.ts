@@ -74,7 +74,6 @@ export class File extends BaseEntity {
       onDelete: "CASCADE"
     }
   )
-  @JoinColumn()
   video: Video;
 
   async save(saveOptions?: SaveOptions): Promise<this> {

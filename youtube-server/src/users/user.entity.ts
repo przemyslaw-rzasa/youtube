@@ -6,7 +6,8 @@ import {
   BaseEntity,
   Unique,
   OneToMany,
-  SaveOptions
+  SaveOptions,
+  OneToOne
 } from "typeorm";
 
 import { Channel } from "src/channels/channel.entity";
@@ -29,12 +30,14 @@ interface AdditionalSaveOptions {
 
 type SaveUserOptions = SaveOptions & AdditionalSaveOptions;
 
-@YoutubeEntity()
+export type SensitiveUser = Omit<User, "password" | "salt">;
+
+@YoutubeEntity({ insensitiveKeys: ["password", "salt"] })
 @Entity()
 @Unique(["email"])
 export class User extends BaseEntity {
-  // @todo: Possibility, to have it declared out of box?
   fromData: FromData;
+  insensitiveData: SensitiveUser;
 
   constructor(data?) {
     super();
