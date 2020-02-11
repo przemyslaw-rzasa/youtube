@@ -1,0 +1,17 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.youtube {
+  height: 100%;
+
+  background-color: rgb(224, 224, 224);
+  &__main {
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+  }
+}
