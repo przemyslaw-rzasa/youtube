@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
+import { Modal as MaterialModal } from "@material-ui/core";
 
-import { YoutubeContext } from "../../YoutubeProvider";
+import { YoutubeContext } from "../../../YoutubeContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,31 +32,26 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const AuthModal = () => {
+export const Modal = (props: any) => {
   const classes = useStyles();
   const rootRef = React.useRef(null);
 
   return (
     <YoutubeContext.Consumer>
-      {(context: any) => (
+      {context => (
         <div className={classes.root}>
-          <Modal
+          <MaterialModal
             disableEnforceFocus
             disableAutoFocus
-            open={context.state.authModalOpened}
+            open={context.isAuthPageOpened}
             aria-labelledby="server-modal-title"
             aria-describedby="server-modal-description"
             className={classes.modal}
             container={() => rootRef.current}
-            onBackdropClick={() => context.callbacks.toggleAuthModal(false)}
+            onBackdropClick={props.onBackdropClick}
           >
-            <div className={classes.paper}>
-              <h2 id="server-modal-title">Server-side modal</h2>
-              <p id="server-modal-description">
-                If you disable JavaScript, you will still see me.
-              </p>
-            </div>
-          </Modal>
+            <div className={classes.paper}>{props.children}</div>
+          </MaterialModal>
         </div>
       )}
     </YoutubeContext.Consumer>

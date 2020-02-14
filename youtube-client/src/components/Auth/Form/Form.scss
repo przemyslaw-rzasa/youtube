@@ -1,0 +1,10 @@
+.auth-form {
+  &__switch-button.MuiButtonBase-root {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__action-button.MuiButtonBase-root {
+    margin-top: 10px;
+  }
+}

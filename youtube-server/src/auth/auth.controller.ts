@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Req } from "@nestjs/common";
+import { Controller, Post, UseGuards, Get, Body } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 
 import { AuthService, TokenPayload } from "./auth.service";
@@ -10,7 +10,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @UseGuards(AuthGuard("local"))
-  @Post("/sign-in")
+  @Post()
   signIn(@GetUser() user: User): Promise<TokenPayload> {
     return this.authService.getToken(user);
   }

@@ -9,6 +9,8 @@ services:
     volumes:
       - ./youtube-client:/usr/src/app
     command: "npm start"
+    depends_on:
+      - server
   server:
     container_name: youtube-server
     image: node:13.8.0-alpine3.11
